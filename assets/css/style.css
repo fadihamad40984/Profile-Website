@@ -489,10 +489,23 @@ h3{
     color: #00B5E7;
     margin-bottom: 25px;
 }
-.project-box label{
-    font-size: 15px;
-    color: #777;
+
+.project-box label a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #777;
+  border: 1px solid #777; 
+  padding: 5px 10px; 
+  display: inline-block; 
+  border-radius: 5px; 
 }
+
+.project-box:hover label a{
+    color: var(--color-white);
+    background: var(--first-color);
+    border: none;
+}
+
 .project-box::after, .contact-info::after{
     content: "";
     position: absolute;
