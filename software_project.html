@@ -1,11 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="assets/css/stylepages.css">
+
+    <link rel="shortcut icon" href="assets/images/logo.png" type="image/png">
+
+    <title>Project Name - CE.Fadi Hamad</title>
 </head>
-<body>
-  
+<body> 
+   <div class="container">
+      <nav id="header">
+        <div class="nav-logo">
+            <p class="nav-name">Fadi Hamad</p>
+            <span>.</span>
+        </div>
+        <div class="nav-menu" id="myNavMenu">
+            <ul class="nav_menu_list">
+                <li class="nav_list">
+                    <a href="index.html#home" class="nav-link active-link">Home</a>
+                    <div class="circle"></div>
+                </li>
+                <li class="nav_list">
+                    <a href="index.html#about" class="nav-link">About</a>
+                    <div class="circle"></div>
+                </li>
+                <li class="nav_list">
+                    <a href="index.html#projects" class="nav-link">Projects</a>
+                    <div class="circle"></div>
+                </li>
+                <li class="nav_list">
+                    <a href="index.html#contact" class="nav-link">Contact</a>
+                    <div class="circle"></div>
+                </li>
+                
+            </ul>
+        </div>
+      
+        <div class="nav-menu-btn">
+            <i class="uil uil-bars" onclick="myMenuFunction()"></i>
+        </div>
+
+        <div class="mode">
+          <div class="moon-sun" id="toggle-switch">
+              <i class="uil uil-moon" id="moon"></i>
+              <i class="uil uil-sun" id="sun"></i>
+          </div>
+      </div>
+    
+      </nav>
+
+      <main class="wrapper">
+        <section class="section" id="project-details">
+           <div class="top-header">
+              <h1 class="h1header">Event Planner</h1>
+              <p>Software Project</p>
+           </div>
+           <div class="project-details">
+              <div class="project-info">
+                 <h3>Description</h3>
+                 <p>
+                    The Event Planner project is a Java-based software application developed to streamline the planning and management of events. 
+                    This project incorporates advanced testing and analysis tools to ensure high-quality software delivery. It features interactive 
+                    functionality, robust backend operations, and integrates seamlessly with modern development practices.
+                 </p>
+                 <h3>Technologies Used</h3>
+                 <ul>
+                    <li>Java</li>
+                    <li>Postgres sql</li>
+                    <li>Cucumber (Behavior-Driven Development)</li>
+                    <li>JaCoCo (Code Coverage Tool)</li>
+                    <li>SonarCloud (Code Analysis and Quality Checks)</li>
+                 </ul>
+                 <h3>Features</h3>
+                 <ul>
+                    <li>Comprehensive event scheduling and tracking</li>
+                    <li>Automated testing with Cucumber for BDD</li>
+                    <li>Code coverage analysis using JaCoCo</li>
+                    <li>Continuous code quality monitoring with SonarCloud</li>
+                 </ul>
+                 <h3>GitHub Link</h3>
+                 <p>
+                    <a href="https://github.com/fadihamad40984/Event_Planner--Software-project--" target="_blank">View Repository</a>
+                 </p>
+              </div>
+           </div>
+        </section>
+     </main>
+     
+
+    <footer>
+        <div class="top-footer">
+            <p>Fadi Hamad .</p>
+        </div>
+        <div class="middle-footer">
+            <ul class="footer-menu">
+                <li class="footer_menu_list">
+                    <a href="index.html#home">Home</a>
+                </li>
+                <li class="footer_menu_list">
+                    <a href="index.html#about">About</a>
+                </li>
+                <li class="footer_menu_list">
+                    <a href="index.html#projects">Projects</a>
+                </li>
+                <li class="footer_menu_list">
+                    <a href="index.html#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-social-icons">
+          <div class="icon" onclick="navigateTo('https://www.instagram.com/fadi.hamad.161/')">
+            <i class="uil uil-instagram"></i>
+          </div>
+          <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/fadi-hamad-311352328/')">
+            <i class="uil uil-linkedin-alt"></i>
+          </div>
+          <div class="icon" onclick="navigateTo('https://github.com/fadihamad40984')">
+            <i class="uil uil-github-alt"></i>
+          </div>
+        </div>
+        <div class="bottom-footer">
+            <p>Copyright &copy; <a href="index.html#home" style="text-decoration: none;">Fadi Hamad</a> - All rights reserved</p>
+        </div>
+    </footer>
+
+    </div>
+
+    <script src="assets/js/mainpages.js"></script>
 </body>
 </html>

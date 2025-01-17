@@ -158,6 +158,11 @@ body.dark .top-header h1{
 body.dark .skills-header h3{
   color: var(--dark-color-white);
 }
+
+.nav-logo.dark span{
+
+  color: var(--dark-color-white);
+}
 	
 .mode{
   display: flex;
@@ -222,6 +227,8 @@ nav{
     font-size: 5em;
     color: var(--text-color-second);
 }
+
+
 .nav-menu, .nav_menu_list{
     display: flex;
 }

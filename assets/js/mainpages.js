@@ -1,3 +1,34 @@
+/* document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+      });
+  });
+});
+
+function navigateTo(url) {
+  window.open(url, '_blank');
+}
+
+const navMenu = document.getElementById('myNavMenu');
+const navToggle = document.createElement('div');
+navToggle.className = 'nav-toggle';
+navToggle.innerHTML = '<i class="uil uil-bars"></i>';
+document.querySelector('nav').appendChild(navToggle);
+
+navToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) {
+      navMenu.classList.remove('active');
+  }
+});
+ */
+
 
 function myMenuFunction() {
   var menuBtn = document.getElementById("myNavMenu");
