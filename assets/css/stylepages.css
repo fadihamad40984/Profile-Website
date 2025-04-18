@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Light Theme */
     --body-color: #f8f9fa;
     --color-white: #ffffff;
     --text-color: #333333;
@@ -14,7 +13,6 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
     --card-bg: #ffffff;
     
-    /* Dark Theme */
     --dark-body-color: #121212;
     --dark-color-white: #e0e0e0;
     --dark-text-color: #f5f5f5;
@@ -27,7 +25,6 @@
     --dark-shadow-color: rgba(255, 255, 255, 0.05);
     --dark-card-bg: #1e1e1e;
     
-    /* Commons */
     --border-radius: 12px;
     --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     --transition: all 0.3s ease;
@@ -74,7 +71,6 @@ body.dark {
     color: var(--dark-text-color);
 }
 
-/* Navigation */
 nav {
     position: fixed;
     display: flex;
@@ -183,7 +179,6 @@ body.dark .nav-menu-btn i {
     color: var(--dark-text-color);
 }
 
-/* Dark Mode Toggle */
 .mode {
     display: flex;
     align-items: center;
@@ -240,7 +235,6 @@ body.dark #moon {
     margin: 60px 0;
 }
 
-/* Project Details */
 .project-title {
     font-size: 2.8rem;
     color: var(--first-color);
@@ -486,7 +480,6 @@ body.dark .phase h4 {
     color: var(--dark-first-color);
 }
 
-/* Buttons */
 .btn {
     font-weight: 500;
     padding: 12px 24px;
@@ -538,7 +531,6 @@ body.dark .github-btn:hover {
     background: #333;
 }
 
-/* Footer */
 footer {
     display: flex;
     justify-content: center;
@@ -650,7 +642,6 @@ body.dark .bottom-footer a {
     color: var(--dark-first-color);
 }
 
-/* Responsive Design */
 @media only screen and (max-width: 1024px) {
     .project-content {
         flex-direction: column;

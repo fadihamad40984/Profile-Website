@@ -1,4 +1,3 @@
-// Updated JavaScript with new functionality
 function myMenuFunction() {
   var menuBtn = document.getElementById("myNavMenu");
   if (menuBtn.className === "nav-menu") {
@@ -8,7 +7,6 @@ function myMenuFunction() {
   }
 }
 
-// Dark mode toggle
 const body = document.querySelector("body"),
 toggleSwitch = document.getElementById("toggle-switch");
 toggleSwitch.addEventListener('click', () => {
@@ -16,12 +14,10 @@ toggleSwitch.addEventListener('click', () => {
   localStorage.setItem('darkMode', body.classList.contains('dark'));
 });
 
-// Check for saved dark mode preference
 if (localStorage.getItem('darkMode') === 'true') {
   body.classList.add('dark');
 }
 
-// Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -31,12 +27,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// External link navigation
 function navigateTo(url) {
   window.open(url, '_blank');
 }
 
-// Header shadow on scroll
 window.onscroll = function() { headerShadow() };
 function headerShadow() {
   const navHeader = document.getElementById("header");
@@ -51,7 +45,6 @@ function headerShadow() {
   }
 }
 
-// Typed.js animation
 var typingEffect = new Typed(".typedText", {
   strings: ["Developer", "Programmer", "Engineer"],
   loop: true,
@@ -98,7 +91,6 @@ const srRight = ScrollReveal({
 srRight.reveal('.skills-box', { delay: 100 });
 srRight.reveal('.form-control', { delay: 100 });
 
-// Active link highlighting
 const sections = document.querySelectorAll('section[id]');
 function scrollActive() {
   const scrollY = window.scrollY;
@@ -115,15 +107,11 @@ function scrollActive() {
 }
 window.addEventListener('scroll', scrollActive);
 
-// DOM Loaded enhancements
 document.addEventListener("DOMContentLoaded", function() {
-  // Set current year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
   
-  // Smooth transitions
   document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
   
-  // Button hover effects
   const buttons = document.querySelectorAll('.btn');
   buttons.forEach(button => {
     button.addEventListener('mouseover', () => {
@@ -135,7 +123,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
   
-  // Link hover effects
   const links = document.querySelectorAll('.nav-menu a, .footer-menu a');
   links.forEach(link => {
     link.addEventListener('mouseover', () => {

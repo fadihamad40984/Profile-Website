@@ -684,7 +684,6 @@ footer{
   color: #777;
 }
 
-/* Certificates Section */
 .certificates-container {
   display: flex;
   justify-content: space-between;
@@ -749,7 +748,6 @@ footer{
   align-self: flex-start;
 }
 
-/* Project Box Improvements */
 .project-box p {
   color: #777;
   font-size: 14px;
@@ -758,12 +756,10 @@ footer{
   padding: 0 15px;
 }
 
-/* Footer Improvements */
 #year {
   display: inline-block;
 }
 
-/* Dark Mode Adjustments */
 body.dark .certificate-box {
   background: var(--dark-body-color);
   box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
