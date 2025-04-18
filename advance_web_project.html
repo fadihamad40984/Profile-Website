@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional portfolio of Fadi Hamad - Full Stack Developer">
+    <meta name="keywords" content="developer, portfolio, full stack, web development, software engineer">
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="assets/css/stylepages.css">
-
     <link rel="shortcut icon" href="assets/images/logo.png" type="image/png">
 
-    <title>Village Management - CE.Fadi Hamad</title>
+    <title>Village Management System | Fadi Hamad</title>
 </head>
 <body> 
    <div class="container">
@@ -21,7 +22,7 @@
       <div class="nav-menu" id="myNavMenu">
         <ul class="nav_menu_list">
             <li class="nav_list">
-                <a href="index.html#home" class="nav-link active-link">Home</a>
+                <a href="index.html#home" class="nav-link">Home</a>
                 <div class="circle"></div>
             </li>
             <li class="nav_list">
@@ -29,17 +30,16 @@
                 <div class="circle"></div>
             </li>
             <li class="nav_list">
-                <a href="index.html#projects" class="nav-link">Projects</a>
+                <a href="index.html#projects" class="nav-link active-link">Projects</a>
                 <div class="circle"></div>
             </li>
             <li class="nav_list">
                 <a href="index.html#contact" class="nav-link">Contact</a>
                 <div class="circle"></div>
             </li>
-            
         </ul>
-    </div>
-    
+      </div>
+      
       <div class="nav-menu-btn">
           <i class="uil uil-bars" onclick="myMenuFunction()"></i>
       </div>
@@ -49,72 +49,112 @@
             <i class="uil uil-moon" id="moon"></i>
             <i class="uil uil-sun" id="sun"></i>
         </div>
-    </div>
-  
+      </div>
     </nav>
 
     <main class="wrapper">
       <section class="section" id="project-details">
          <div class="top-header">
-            <h1 class="h1header">Village Management System</h1>
-            <p>Advance Web Project</p>
+            <h1 class="project-title">Village Management System</h1>
+            <p class="project-subtitle">Advanced Web Project</p>
          </div>
-         <div class="project-details">
+         
+         <div class="project-content">
+            <div class="project-image">
+               <img src="assets/images/village-management.png" alt="Village Management System Screenshot" class="project-screenshot">
+               <div class="project-links">
+                  <a href="https://github.com/fadihamad40984/advanceWebProject-part1-" target="_blank" class="btn github-btn">
+                     <i class="uil uil-github"></i> Phase 1 Code
+                  </a>
+                  <a href="https://github.com/fadihamad40984/advancewebreactproject_part2" target="_blank" class="btn github-btn">
+                     <i class="uil uil-github"></i> Phase 2 Code
+                  </a>
+               </div>
+            </div>
+            
             <div class="project-info">
-               <h3>Description</h3>
-               <p>
-                  The Village Management System is designed to provide a streamlined approach to managing and displaying 
-                  demographic, geographical, and administrative details of various villages. It includes a real-time chat feature 
-                  using WebSocket integrated with the API, enabling instant communication among users and admins within the platform.
-               </p>
-               <h3>Technologies Used</h3>
-               <ul>
-                  <li>Frontend: React with pure CSS</li>
-                  <li>Backend: Node.js with GraphQL API</li>
-                  <li>Database: MySQL (XAMPP)</li>
-                  <li>Real-time Chat: WebSocket</li>
-               </ul>
-               <h3>Roles</h3>
-               <ul>
-                  <li><strong>User:</strong> View village demographics, geographical data, and public facilities.</li>
-                  <li><strong>Admin:</strong> Manage village data with full CRUD capabilities.</li>
-               </ul>
-               <h3>Development Phases</h3>
-               <ul>
-                  <li>
-                     <strong>Phase 1:</strong> Initial front-end development using HTML, LESS CSS, and JavaScript, with 
-                     fake data to simulate village information.
-                  </li>
-                  <li>
-                     <strong>Phase 2 and 3 (Merged):</strong> Refactored front-end in React, styled with pure CSS, and 
-                     integrated with a Node.js backend powered by GraphQL and MySQL. Added real-time chat functionality with WebSocket.
-                  </li>
-               </ul>
-               <h3>Features</h3>
-               <ul>
-                  <li>Responsive and user-friendly interface</li>
-                  <li>Real-time data integration and display</li>
-                  <li>Real-time chat for user and admin communication</li>
-                  <li>Role-based access control</li>
-                  <li>Comprehensive CRUD operations for village management</li>
-                  <li>Secure authentication and authorization for admins</li>
-               </ul>
-               <h3>GitHub Link</h3>
-               <p>
-                  <a href="https://github.com/fadihamad40984/advanceWebProject-part1-" target="_blank">View Repository (Phase1)</a>
-                  <br>
-                  <a href="https://github.com/fadihamad40984/advancewebreactproject_part2" target="_blank">View Repository (Phase2)</a>
-
-               </p>
+               <div class="info-section">
+                  <h3><i class="uil uil-info-circle"></i> Description</h3>
+                  <p>
+                     The Village Management System provides a streamlined approach to managing and displaying 
+                     demographic, geographical, and administrative details of various villages. It includes a real-time chat feature 
+                     using WebSocket integrated with the API, enabling instant communication among users and admins.
+                  </p>
+               </div>
+               
+               <div class="info-section">
+                  <h3><i class="uil uil-cog"></i> Technologies Used</h3>
+                  <div class="tech-stack">
+                     <div class="tech-item">
+                        <span class="tech-category">Frontend:</span>
+                        <span>React with pure CSS</span>
+                     </div>
+                     <div class="tech-item">
+                        <span class="tech-category">Backend:</span>
+                        <span>Node.js with GraphQL API</span>
+                     </div>
+                     <div class="tech-item">
+                        <span class="tech-category">Database:</span>
+                        <span>MySQL (XAMPP)</span>
+                     </div>
+                     <div class="tech-item">
+                        <span class="tech-category">Real-time:</span>
+                        <span>WebSocket</span>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="info-section">
+                  <h3><i class="uil uil-user-md"></i> Roles & Features</h3>
+                  <div class="features-grid">
+                     <div class="feature-card">
+                        <h4>User</h4>
+                        <ul>
+                           <li>View village demographics</li>
+                           <li>Access geographical data</li>
+                           <li>See public facilities</li>
+                        </ul>
+                     </div>
+                     <div class="feature-card">
+                        <h4>Admin</h4>
+                        <ul>
+                           <li>Full CRUD capabilities</li>
+                           <li>Manage village data</li>
+                           <li>Monitor user activities</li>
+                        </ul>
+                     </div>
+                     <div class="feature-card">
+                        <h4>System</h4>
+                        <ul>
+                           <li>Real-time chat</li>
+                           <li>Secure authentication</li>
+                           <li>Responsive interface</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="info-section">
+                  <h3><i class="uil uil-process"></i> Development Phases</h3>
+                  <div class="timeline">
+                     <div class="phase">
+                        <h4>Phase 1</h4>
+                        <p>Initial front-end development using HTML, LESS CSS, and JavaScript with mock data.</p>
+                     </div>
+                     <div class="phase">
+                        <h4>Phase 2 & 3</h4>
+                        <p>Refactored to React with pure CSS, integrated Node.js backend with GraphQL and MySQL, added WebSocket chat.</p>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </section>
    </main>
    
-
     <footer>
         <div class="top-footer">
-            <p>Fadi Hamad .</p>
+            <p>Fadi Hamad</p>
         </div>
         <div class="middle-footer">
             <ul class="footer-menu">
@@ -144,11 +184,10 @@
           </div>
         </div>
         <div class="bottom-footer">
-            <p>Copyright &copy; <a href="index.html#home" style="text-decoration: none;">Fadi Hamad</a> - All rights reserved</p>
+            <p>Copyright &copy; <span id="year"></span> <a href="index.html#home">Fadi Hamad</a> - All rights reserved</p>
         </div>
     </footer>
-
-    </div>
+   </div>
 
     <script src="assets/js/mainpages.js"></script>
 </body>

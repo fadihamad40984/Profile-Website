@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Fadi Hamad - Full Stack Developer Portfolio">
+    <meta name="keywords" content="developer, portfolio, full stack, web development">
+    
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-
     <link rel="stylesheet" href="assets/css/style.css">
-
     <link rel="shortcut icon" href="assets/images/logo.png" type="image/png">
 
-    <title>CE.Fadi Hamad</title>
+    <title>Fadi Hamad | Full Stack Developer</title>
 </head>
 <body> 
    <div class="container">
@@ -34,10 +34,13 @@
                     <div class="circle"></div>
                 </li>
                 <li class="nav_list">
+                    <a href="#certificates" class="nav-link">Certificates</a>
+                    <div class="circle"></div>
+                </li>
+                <li class="nav_list">
                     <a href="#contact" class="nav-link">Contact</a>
                     <div class="circle"></div>
                 </li>
-                
             </ul>
         </div>
       
@@ -51,10 +54,7 @@
               <i class="uil uil-sun" id="sun"></i>
           </div>
       </div>
-    
       </nav>
-
-      
 
     <main class="wrapper">
        <section class="featured-box" id="home">
@@ -66,29 +66,27 @@
                 <p>I'm <span class="typedText"></span></p>
             </div>
             <div class="featured-text-info">
-                <p>Experienced full-stack developer skilled in creating visually appealing front-end interfaces and robust back-end systems. 
-                </p>
+                <p>Experienced full-stack developer skilled in creating visually appealing front-end interfaces and robust back-end systems. Passionate about building efficient, scalable applications with clean code.</p>
             </div>
             <div class="featured-text-btn">
               <a href="#contact" class="btn blue-btn">Contact me</a>
-
+              <a href="#projects" class="btn">View Projects</a>
             </div>
             <div class="social_icons">
               <div class="icon" onclick="navigateTo('https://www.instagram.com/fadi.hamad.161/')">
                 <i class="uil uil-instagram"></i>
-            </div>
-            <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/cefadihamad/')">
+              </div>
+              <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/cefadihamad/')">
                 <i class="uil uil-linkedin-alt"></i>
-            </div>
-            <div class="icon" onclick="navigateTo('https://github.com/fadihamad40984')">
+              </div>
+              <div class="icon" onclick="navigateTo('https://github.com/fadihamad40984')">
                 <i class="uil uil-github-alt"></i>
-            </div>
-          
+              </div>
             </div>
           </div>
           <div class="featured-image">
             <div class="image">
-                <img src="assets/images/profile.jpeg" alt="avatar">
+                <img src="assets/images/profile1.jpg" alt="Fadi Hamad - Full Stack Developer">
             </div>
           </div>
           <div class="scroll-icon-box">
@@ -97,18 +95,28 @@
                 <p>Scroll Down</p>
             </a>
           </div>
+       </section>
 
-
-    </section>
-    <section class="section" id="about">
+       <section class="section" id="about">
         <div class="top-header">
             <h1>About Me</h1>
+            <span>Get to know me better</span>
         </div>
         <div class="row">
             <div class="col">
                 <div class="about-info">
                     <h3>My introduction</h3>
-                    <p>I am a computer engineering student proficient in HTML, CSS, and JavaScript, with a strong foundation in building interactive features. I also have experience working with MySQL databases and Node.js for back-end development and server-side scripting. Additionally, I am skilled in modern frameworks, tools, and collaborative development practices to create robust applications.</p>
+                    <p>I am a computer engineering student with expertise in full-stack development. With a strong foundation in both front-end and back-end technologies, I build responsive, user-friendly web applications. My approach combines technical skills with problem-solving abilities to deliver high-quality solutions.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">2+</span>
+                            <span class="stat-text">Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-text">Projects Completed</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col">
@@ -137,9 +145,7 @@
                             <h4>Styling</h4>
                             <div class="skills-list">
                                 <span>Tailwind CSS</span>
-                                <span>W3.CSS</span>
                                 <span>Sass</span>
-                                <span>Less</span>
                             </div>
                         </div>
                     </div>
@@ -149,8 +155,9 @@
                         <h3>Backend</h3>
                     </div>
                     <div class="skills-list">
-                        <span>PHP</span>
                         <span>Node.js</span>
+                        <span>Express</span>
+                        <span>PHP</span>
                     </div>
                 </div>
                 <div class="skills-box">
@@ -160,6 +167,7 @@
                     <div class="skills-list">
                         <span>MySQL</span>
                         <span>PostgreSQL</span>
+                        <span>MongoDB</span>
                     </div>
                 </div>
                 <div class="skills-box">
@@ -169,49 +177,83 @@
                     <div class="skills-list">
                         <span>Git</span>
                         <span>GitHub</span>
+                        <span>Docker</span>
+                        <span>Postman</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    
-
+       </section>
 
        <section class="section" id="projects">
           <div class="top-header">
               <h1>Projects</h1>
+              <span>Some of my recent work</span>
           </div>
           <div class="project-container">
             <div class="project-box">
                 <i class="uil uil-briefcase-alt"></i>
-                <h3>Web project</h3>
+                <h3>Web Project</h3>
+                <p>A responsive e-commerce platform built with React and Node.js</p>
                 <label><a href="advance_web_project.html">Read more</a></label>
             </div>
             <div class="project-box">
                 <i class="uil uil-users-alt"></i>
-                <h3>Software project</h3>
+                <h3>Software Project</h3>
+                <p>Inventory management system with PHP and MySQL</p>
                 <label><a href="software_project.html">Read more</a></label>
             </div>
             <div class="project-box">
                 <i class="uil uil-award"></i>
-                <h3>Advance software project</h3>
+                <h3>Advanced Software</h3>
+                <p>AI-powered recommendation engine with Python</p>
                 <label><a href="advanceSoftware_project.html">Read more</a></label>
             </div>
-          
           </div>
+       </section>
+
+       <section class="section" id="certificates">
+        <div class="top-header">
+            <h1>Certificates</h1>
+            <span>My professional certifications</span>
+        </div>
+        <div class="certificates-container">
+            <div class="certificate-box">
+                <div class="certificate-img">
+                    <img src="assets/images/fornt1.png" alt="Front End Web Developer Certificate">
+                </div>
+                <div class="certificate-info">
+                    <h3>Front End Web Developer</h3>
+                    <p>Issued by Udacity - 2025</p>
+                    <a onclick="navigateTo('https://www.udacity.com/certificate/e/00fa8c48-edf1-11ef-aebf-8f2c72cb2f87')" class="btn">View Certificate</a>
+                </div>
+            </div>
+            <div class="certificate-box">
+                <div class="certificate-img">
+                    <img src="assets/images/problem.jpeg" style="  object-position: center 10%;" alt="Problem Solving (Basic) Certificate">  </div>
+                <div class="certificate-info">
+                    <h3>Problem Solving (Basic)</h3>
+                    <p>Issued by HackerRank - 2024</p>
+                    <a onclick="navigateTo('https://www.hackerrank.com/certificates/iframe/daf31c625f0d')"  class="btn">View Certificate</a>
+                </div>
+            </div>
+
+        </div>
        </section>
 
        <section class="section" id="contact">
         <div class="top-header">
             <h1>Get in touch</h1>
-            <span>Do you have a project in your mind, contact me here</span>
+            <span>Do you have a project in mind? Contact me here</span>
         </div>
         <div class="row">
             <div class="col">
                 <div class="contact-info">
                     <h2>Find Me <i class="uil uil-corner-right-down"></i></h2>
-                    <p><i class="uil uil-envelope-info"></i> Fill this Form to contact with me <i class="uil uil-arrow-right"></i></p>
-                  
+                    <p><i class="uil uil-envelope"></i> Email: fadihamad40984@gmail.com</p>
+                    <p><i class="uil uil-phone"></i> Phone: +970-595-778-769</p>
+                    <p><i class="uil uil-map-marker"></i> Location: Palestine, Nablus</p>
+                    <p><i class="uil uil-envelope-info"></i> Fill the form to contact me <i class="uil uil-arrow-right"></i></p>
                 </div>
             </div>
             <div class="col">
@@ -222,7 +264,7 @@
                             <input type="email" class="input-field" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="text-area">
-                            <textarea name="message" placeholder="Message" required></textarea>
+                            <textarea name="message" placeholder="Your Message" required></textarea>
                         </div>
                         <div class="form-button">
                             <button type="submit" class="btn">Send <i class="uil uil-message"></i></button>
@@ -231,16 +273,12 @@
                 </form>
             </div>
         </div>
-    </section>
-    
-    
-
+       </section>
     </main>
-
 
     <footer>
         <div class="top-footer">
-            <p>Fadi Hamad .</p>
+            <p>Fadi Hamad</p>
         </div>
         <div class="middle-footer">
             <ul class="footer-menu">
@@ -254,35 +292,32 @@
                     <a href="#projects">Projects</a>
                 </li>
                 <li class="footer_menu_list">
+                    <a href="#certificates">Certificates</a>
+                </li>
+                <li class="footer_menu_list">
                     <a href="#contact">Contact</a>
                 </li>
             </ul>
         </div>
         <div class="footer-social-icons">
-          <div class="icon" onclick="navigateTo('https://www.instagram.com/fadi.hamad.161/')">
-            <i class="uil uil-instagram"></i>
-        </div>
-        <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/cefadihamad/')">
-            <i class="uil uil-linkedin-alt"></i>
-        </div>
-        <div class="icon" onclick="navigateTo('https://github.com/fadihamad40984')">
-            <i class="uil uil-github-alt"></i>
-        </div>
+            <div class="icon" onclick="navigateTo('https://www.instagram.com/fadi.hamad.161/')">
+                <i class="uil uil-instagram"></i>
+            </div>
+            <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/cefadihamad/')">
+                <i class="uil uil-linkedin-alt"></i>
+            </div>
+            <div class="icon" onclick="navigateTo('https://github.com/fadihamad40984')">
+                <i class="uil uil-github-alt"></i>
+            </div>
         </div>
         <div class="bottom-footer">
-            <p>Copyright &copy; <a href="#home" style="text-decoration: none;">Fadi Hamad</a> - All rights reserved</p>
+            <p>Copyright &copy; <span id="year"></span> <a href="#home">Fadi Hamad</a> - All rights reserved</p>
         </div>
     </footer>
-
-    </div>
-
-
-
+   </div>
 
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-
     <script src="https://unpkg.com/scrollreveal"></script>
-
     <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,167 +1,119 @@
-/* document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+// Professional Portfolio Scripts
+document.addEventListener("DOMContentLoaded", function() {
+  function toggleMobileMenu() {
+      const menu = document.getElementById("myNavMenu");
+      menu.classList.toggle("responsive");
+      const icon = document.querySelector('.nav-menu-btn i');
+      icon.setAttribute('aria-expanded', menu.classList.contains("responsive"));
+  }
+
+  document.querySelector('.nav-menu-btn').addEventListener('click', toggleMobileMenu);
+
+  document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', function() {
+          if (window.innerWidth <= 768) {
+              toggleMobileMenu();
+          }
       });
   });
+
+  const darkModeToggle = document.getElementById("toggle-switch");
+  const body = document.body;
+  
+  function toggleDarkMode() {
+      body.classList.toggle("dark");
+      localStorage.setItem("darkMode", body.classList.contains("dark"));
+      updateDarkModeIcon();
+  }
+  
+  function updateDarkModeIcon() {
+      const isDark = body.classList.contains("dark");
+      darkModeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+  }
+  
+  darkModeToggle.addEventListener("click", toggleDarkMode);
+  
+  if (localStorage.getItem("darkMode") === "true") {
+      body.classList.add("dark");
+      updateDarkModeIcon();
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+              window.scrollTo({
+                  top: targetElement.offsetTop - 80,
+                  behavior: "smooth"
+              });
+              
+              if (history.pushState) {
+                  history.pushState(null, null, targetId);
+              }
+          }
+      });
+  });
+
+  function handleExternalLinks(event) {
+      const url = this.getAttribute("data-url") || this.getAttribute("onclick").match(/'([^']+)'/)[1];
+      if (url) {
+          event.preventDefault();
+          window.open(url, "_blank", "noopener,noreferrer");
+          // Here you could add analytics tracking
+          console.log(`External link clicked: ${url}`);
+      }
+  }
+
+  document.querySelectorAll('[onclick^="navigateTo"]').forEach(link => {
+      link.addEventListener("click", handleExternalLinks);
+  });
+
+  function updateHeaderOnScroll() {
+      const header = document.getElementById("header");
+      if (window.scrollY > 50) {
+          header.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.15)";
+          header.style.height = "70px";
+          header.style.lineHeight = "70px";
+      } else {
+          header.style.boxShadow = "none";
+          header.style.height = "90px";
+          header.style.lineHeight = "90px";
+      }
+  }
+
+  window.addEventListener("scroll", updateHeaderOnScroll);
+  updateHeaderOnScroll(); // Initialize
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  document.querySelectorAll(".project-screenshot").forEach(img => {
+      img.addEventListener("click", function() {
+          this.classList.toggle("zoomed");
+      });
+  });
+
+  document.querySelectorAll(".btn").forEach(button => {
+      button.addEventListener("mouseenter", function() {
+          this.style.transform = "translateY(-2px)";
+          this.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.15)";
+      });
+      
+      button.addEventListener("mouseleave", function() {
+          this.style.transform = "";
+          this.style.boxShadow = "";
+      });
+  });
+
+  setTimeout(() => {
+      document.querySelector(".project-content").style.opacity = "1";
+      document.querySelector(".project-content").style.transform = "translateY(0)";
+  }, 300);
 });
 
 function navigateTo(url) {
-  window.open(url, '_blank');
+  window.open(url, "_blank", "noopener,noreferrer");
 }
-
-const navMenu = document.getElementById('myNavMenu');
-const navToggle = document.createElement('div');
-navToggle.className = 'nav-toggle';
-navToggle.innerHTML = '<i class="uil uil-bars"></i>';
-document.querySelector('nav').appendChild(navToggle);
-
-navToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-});
-
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 768) {
-      navMenu.classList.remove('active');
-  }
-});
- */
-
-
-function myMenuFunction() {
-  var menuBtn = document.getElementById("myNavMenu");
-
-  if (menuBtn.className === "nav-menu") {
-    menuBtn.className += " responsive";
-  } else {
-    menuBtn.className = "nav-menu";
-  }
-}
-
-const body = document.querySelector("body"),
-toggleSwitch = document.getElementById("toggle-switch");
-toggleSwitch.addEventListener('click', () => {
-  body.classList.toggle("dark");
-
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
-
-function navigateTo(url) {
-  window.open(url, '_blank');
-}
-
-
-window.onscroll = function () { headerShadow() };
-
-function headerShadow() {
-  const navHeader = document.getElementById("header");
-
-  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-    navHeader.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.15)";
-    navHeader.style.height = "70px";
-    navHeader.style.lineHeight = "70px";
-  } else {
-    navHeader.style.boxShadow = "none";
-    navHeader.style.height = "90px";
-    navHeader.style.lineHeight = "90px";
-  }
-}
-var typingEffect = new Typed(".typedText", {
-  strings: ["Developer"],
-  loop: true,
-  typeSpeed: 100,
-  backSpeed: 80,
-  backDelay: 2000
-});
-
-const sr = ScrollReveal({
-  origin: 'top',
-  distance: '80px',
-  duration: 2000,
-  reset: true
-});
-
-sr.reveal('.featured-text-card', {});
-sr.reveal('.featured-name', { delay: 100 });
-sr.reveal('.featured-text-info', { delay: 200 });
-sr.reveal('.featured-text-btn', { delay: 200 });
-sr.reveal('.social_icons', { delay: 200 });
-sr.reveal('.featured-image', { delay: 300 });
-
-sr.reveal('.project-box', { interval: 200 });
-sr.reveal('.top-header', {});
-
-const srLeft = ScrollReveal({
-  origin: 'left',
-  distance: '80px',
-  duration: 2000,
-  reset: true
-});
-
-srLeft.reveal('.about-info', { delay: 100 });
-srLeft.reveal('.contact-info', { delay: 100 });
-
-const srRight = ScrollReveal({
-  origin: 'right',
-  distance: '80px',
-  duration: 2000,
-  reset: true
-});
-
-srRight.reveal('.skills-box', { delay: 100 });
-srRight.reveal('.form-control', { delay: 100 });
-
-const sections = document.querySelectorAll('section[id]');
-
-function scrollActive() {
-  const scrollY = window.scrollY;
-
-  sections.forEach(current => {
-    const sectionHeight = current.offsetHeight,
-      sectionTop = current.offsetTop - 50,
-      sectionId = current.getAttribute('id');
-
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document.querySelector('.nav-menu a[href*=' + sectionId + ']').classList.add('active-link');
-    } else {
-      document.querySelector('.nav-menu a[href*=' + sectionId + ']').classList.remove('active-link');
-    }
-  });
-}
-
-window.addEventListener('scroll', scrollActive);
-document.addEventListener("DOMContentLoaded", function () {
-  document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
-
-  const buttons = document.querySelectorAll('.btn');
-  buttons.forEach(button => {
-    button.addEventListener('mouseover', () => {
-      button.style.transform = 'scale(1.05)';
-      button.style.transition = 'transform 0.3s ease';
-    });
-    button.addEventListener('mouseout', () => {
-      button.style.transform = 'scale(1)';
-    });
-  });
-
-  const links = document.querySelectorAll('.nav-menu a');
-  links.forEach(link => {
-    link.addEventListener('mouseover', () => {
-      link.style.color = '#007bff';
-      link.style.transition = 'color 0.3s ease';
-    });
-    link.addEventListener('mouseout', () => {
-      link.style.color = '';
-    });
-  });
-});

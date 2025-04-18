@@ -350,19 +350,25 @@ nav{
     min-height: 80vh;
     width: 50%;
 }
-.image{
-    margin: auto 0;
-    width: 380px;
-    height: 380px;
-    border-radius: 55% 45% 55% 45%;
-    overflow: hidden;
-    animation: imgFloat 7s ease-in-out infinite;
+
+
+.image {
+  margin: auto 0;
+  width: 380px;
+  height: 380px;
+  border-radius: 55% 45% 55% 45%;
+  overflow: hidden;
+  animation: imgFloat 7s ease-in-out infinite;
 }
-.image img{
-    width: 380px;
-    height: 380px;
-    object-fit: cover;
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
 }
+
+
 @keyframes imgFloat {
     50%{
         transform: translateY(10px);
@@ -652,6 +658,134 @@ footer{
 }
 
 
+
+
+.about-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--first-color);
+}
+
+.stat-text {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Certificates Section */
+.certificates-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+}
+
+.certificate-box {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background: var(--color-white);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.certificate-img {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.certificate-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.certificate-box:hover .certificate-img img {
+  transform: scale(1.1);
+}
+
+.certificate-info {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.certificate-info h3 {
+  margin-bottom: 10px;
+  color: var(--text-color-second);
+}
+
+.certificate-info p {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.certificate-info .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* Project Box Improvements */
+.project-box p {
+  color: #777;
+  font-size: 14px;
+  margin: 10px 0 15px;
+  text-align: center;
+  padding: 0 15px;
+}
+
+/* Footer Improvements */
+#year {
+  display: inline-block;
+}
+
+/* Dark Mode Adjustments */
+body.dark .certificate-box {
+  background: var(--dark-body-color);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+}
+
+body.dark .certificate-info h3 {
+  color: var(--dark-color-white);
+}
+
+body.dark .certificate-info p {
+  color: var(--dark-text-color-second);
+}
+
+body.dark .stat-number {
+  color: var(--dark-text-color-third);
+}
+
+
+
+
+
+
 @media only screen and (max-width: 1024px){
     .featured-text{
         padding: 0;
@@ -663,6 +797,9 @@ footer{
 }
 
 @media only screen and (max-width: 900px) {
+  .certificate-box {
+    width: 45%;
+}
     .nav-button{
         display: none;
     }
@@ -742,6 +879,14 @@ footer{
 
 
 @media only screen and (max-width: 540px){
+  .certificate-box {
+    width: 100%;
+}
+
+.about-stats {
+    flex-direction: column;
+    gap: 20px;
+}
     .featured-name{
         font-size: 40px;
     }
