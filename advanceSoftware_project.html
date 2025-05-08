@@ -12,7 +12,7 @@
 
     <title>Rent It Out | Fadi Hamad</title>
 </head>
-<body> 
+<body>
    <div class="container">
     <nav id="header">
       <div class="nav-logo">
@@ -34,12 +34,16 @@
                 <div class="circle"></div>
             </li>
             <li class="nav_list">
+                <a href="index.html#certificates" class="nav-link">Certificates</a>
+                <div class="circle"></div>
+            </li>
+            <li class="nav_list">
                 <a href="index.html#contact" class="nav-link">Contact</a>
                 <div class="circle"></div>
             </li>
         </ul>
     </div>
-    
+
       <div class="nav-menu-btn">
           <i class="uil uil-bars" onclick="myMenuFunction()"></i>
       </div>
@@ -50,38 +54,56 @@
             <i class="uil uil-sun" id="sun"></i>
         </div>
     </div>
-  
+
     </nav>
 
     <main class="wrapper">
       <section class="section" id="project-details">
          <div class="top-header">
-            <h1 class="project-title">Rent It Out</h1>
-            <p class="project-subtitle">Advanced Software Project</p>
+            <div class="code-header">
+
+               <h1 class="project-title"><span class="code-keyword">const</span> <span class="code-variable">project</span> = <span class="code-string">"Rent It Out"</span>;</h1>
+               <p class="project-subtitle"><span class="code-keyword">type</span>: <span class="code-string">"Advanced Software Project"</span>;</p>
+            </div>
          </div>
          <div class="project-content">
-            <div class="project-image">
-               <img src="assets/images/rent-it-out.png" alt="Rent It Out Platform Screenshot" class="project-screenshot">
+            <div class="project-image-container">
+               <div class="project-image tilt-effect">
+                  <img src="assets/images/rent-it-out.png" alt="Rent It Out Platform Screenshot" class="project-screenshot">
+                  <div class="code-overlay">
+                     <div class="code-line">import 'package:flutter/material.dart';</div>
+                     <div class="code-line">class RentItOut extends StatefulWidget {</div>
+                     <div class="code-line">  @override</div>
+                     <div class="code-line">  _RentItOutState createState() => _RentItOutState();</div>
+                     <div class="code-line">}</div>
+                  </div>
+               </div>
                <div class="project-links">
-                  <a href="https://github.com/fadihamad40984/rentitout-backend" target="_blank" class="btn github-btn">
-                     <i class="uil uil-github"></i> Backend Code
+                  <a href="https://github.com/fadihamad40984/rentitout-backend" target="_blank" class="btn code-btn" onclick="window.open(this.href, '_blank'); return false;">
+                     <span class="code-brackets">&lt;</span>
+                     <i class="uil uil-github"></i>
+                     <span class="code-text">Backend_Code</span>
+                     <span class="code-brackets">/&gt;</span>
                   </a>
-                  <a href="https://github.com/fadihamad40984/rentitout-frontend" target="_blank" class="btn github-btn">
-                     <i class="uil uil-github"></i> Frontend Code
+                  <a href="https://github.com/fadihamad40984/rentitout-frontend" target="_blank" class="btn code-btn" onclick="window.open(this.href, '_blank'); return false;">
+                     <span class="code-brackets">&lt;</span>
+                     <i class="uil uil-github"></i>
+                     <span class="code-text">Frontend_Code</span>
+                     <span class="code-brackets">/&gt;</span>
                   </a>
                </div>
             </div>
-            
+
             <div class="project-info">
                <div class="info-section">
                   <h3><i class="uil uil-info-circle"></i> Description</h3>
                   <p>
-                     "Rent It Out" is a comprehensive car rental platform designed to connect users with vehicles for rent seamlessly. 
-                     The project follows a modular architecture with clear separation between frontend and backend components, 
+                     "Rent It Out" is a comprehensive car rental platform designed to connect users with vehicles for rent seamlessly.
+                     The project follows a modular architecture with clear separation between frontend and backend components,
                      leveraging RESTful APIs for secure and efficient communication between systems.
                   </p>
                </div>
-               
+
                <div class="info-section">
                   <h3><i class="uil uil-cog"></i> Technologies Used</h3>
                   <div class="tech-stack">
@@ -107,7 +129,7 @@
                      </div>
                   </div>
                </div>
-               
+
                <div class="info-section">
                   <h3><i class="uil uil-layers"></i> System Architecture</h3>
                   <div class="features-grid">
@@ -137,7 +159,7 @@
                      </div>
                   </div>
                </div>
-               
+
                <div class="info-section">
                   <h3><i class="uil uil-star"></i> Key Features</h3>
                   <div class="features-grid">
@@ -171,7 +193,7 @@
          </div>
       </section>
    </main>
-   
+
     <footer>
         <div class="top-footer">
             <p>Fadi Hamad</p>
@@ -188,6 +210,9 @@
                     <a href="index.html#projects">Projects</a>
                 </li>
                 <li class="footer_menu_list">
+                    <a href="index.html#certificates">Certificates</a>
+                </li>
+                <li class="footer_menu_list">
                     <a href="index.html#contact">Contact</a>
                 </li>
             </ul>
@@ -196,7 +221,7 @@
           <div class="icon" onclick="navigateTo('https://www.instagram.com/fadi.hamad.161/')">
             <i class="uil uil-instagram"></i>
           </div>
-          <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/fadi-hamad-311352328/')">
+          <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/cefadihamad/')">
             <i class="uil uil-linkedin-alt"></i>
           </div>
           <div class="icon" onclick="navigateTo('https://github.com/fadihamad40984')">
@@ -209,6 +234,7 @@
     </footer>
    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
     <script src="assets/js/mainpages.js"></script>
 </body>
 </html>

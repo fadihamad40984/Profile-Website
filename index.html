@@ -3,16 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fadi Hamad - Full Stack Developer Portfolio">
-    <meta name="keywords" content="developer, portfolio, full stack, web development">
-    
+    <meta name="description" content="Fadi Hamad - Professional Full Stack Developer Portfolio showcasing web and software development projects">
+    <meta name="keywords" content="developer, portfolio, full stack, web development, software engineer, react, node.js, javascript, frontend, backend">
+    <meta name="author" content="Fadi Hamad">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Fadi Hamad | Full Stack Developer">
+    <meta property="og:description" content="Professional portfolio showcasing full stack development projects and skills">
+    <meta property="og:image" content="assets/images/profile1.jpg">
+    <meta property="og:url" content="https://fadihamad.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#6e57e0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/images/logo.png" type="image/png">
 
     <title>Fadi Hamad | Full Stack Developer</title>
 </head>
-<body> 
+<body>
+   <div id="preloader">
+      <div class="loader">
+         <svg viewBox="0 0 80 80">
+            <circle id="loader-circle" cx="40" cy="40" r="32"></circle>
+         </svg>
+         <div class="loader-name">Fadi Hamad</div>
+      </div>
+   </div>
+   <button id="back-to-top" aria-label="Back to top">
+      <i class="uil uil-arrow-up"></i>
+   </button>
+
    <div class="container">
       <nav id="header">
         <div class="nav-logo">
@@ -33,6 +56,7 @@
                     <a href="#projects" class="nav-link">Projects</a>
                     <div class="circle"></div>
                 </li>
+
                 <li class="nav_list">
                     <a href="#certificates" class="nav-link">Certificates</a>
                     <div class="circle"></div>
@@ -43,7 +67,7 @@
                 </li>
             </ul>
         </div>
-      
+
         <div class="nav-menu-btn">
             <i class="uil uil-bars" onclick="myMenuFunction()"></i>
         </div>
@@ -58,35 +82,38 @@
 
     <main class="wrapper">
        <section class="featured-box" id="home">
-          <div class="featured-text">
-            <div class="featured-text-card">
-                <span>Fadi Hamad</span>
-            </div>
-            <div class="featured-name">
-                <p>I'm <span class="typedText"></span></p>
-            </div>
-            <div class="featured-text-info">
-                <p>Experienced full-stack developer skilled in creating visually appealing front-end interfaces and robust back-end systems. Passionate about building efficient, scalable applications with clean code.</p>
-            </div>
-            <div class="featured-text-btn">
-              <a href="#contact" class="btn blue-btn">Contact me</a>
-              <a href="#projects" class="btn">View Projects</a>
-            </div>
-            <div class="social_icons">
-              <div class="icon" onclick="navigateTo('https://www.instagram.com/fadi.hamad.161/')">
-                <i class="uil uil-instagram"></i>
+          <div id="vanta-background"></div>
+          <div class="featured-content">
+            <div class="featured-text">
+              <div class="featured-text-card">
+                  <span>Fadi Hamad</span>
               </div>
-              <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/cefadihamad/')">
-                <i class="uil uil-linkedin-alt"></i>
+              <div class="featured-name">
+                  <p>I'm <span class="typedText"></span></p>
               </div>
-              <div class="icon" onclick="navigateTo('https://github.com/fadihamad40984')">
-                <i class="uil uil-github-alt"></i>
+              <div class="featured-text-info">
+                  <p>Experienced full-stack developer skilled in creating visually appealing front-end interfaces and robust back-end systems. Passionate about building efficient, scalable applications with clean code.</p>
+              </div>
+              <div class="featured-text-btn">
+                <a href="#contact" class="btn blue-btn">Contact me <i class="uil uil-message"></i></a>
+                <a href="#projects" class="btn">View Projects <i class="uil uil-arrow-right"></i></a>
+              </div>
+              <div class="social_icons">
+                <div class="icon" onclick="navigateTo('https://www.instagram.com/fadi.hamad.161/')">
+                  <i class="uil uil-instagram"></i>
+                </div>
+                <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/cefadihamad/')">
+                  <i class="uil uil-linkedin-alt"></i>
+                </div>
+                <div class="icon" onclick="navigateTo('https://github.com/fadihamad40984')">
+                  <i class="uil uil-github-alt"></i>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="featured-image">
-            <div class="image">
+            <div class="featured-image">
+              <div class="image">
                 <img src="assets/images/profile1.jpg" alt="Fadi Hamad - Full Stack Developer">
+              </div>
             </div>
           </div>
           <div class="scroll-icon-box">
@@ -98,6 +125,7 @@
        </section>
 
        <section class="section" id="about">
+        <div id="particles-js" class="particles-container"></div>
         <div class="top-header">
             <h1>About Me</h1>
             <span>Get to know me better</span>
@@ -116,7 +144,12 @@
                             <span class="stat-number">15+</span>
                             <span class="stat-text">Projects Completed</span>
                         </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-text">Happy Clients</span>
+                        </div>
                     </div>
+
                 </div>
             </div>
             <div class="col">
@@ -124,28 +157,41 @@
                     <div class="skills-header">
                         <h3>Frontend</h3>
                     </div>
-                    <div class="row">
-                        <div class="box">
-                            <h4>Core</h4>
-                            <div class="skills-list">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
+                    <div class="skills-progress">
+                        <div class="skill-item">
+                            <div class="skill-name-level">
+                                <h4>HTML/CSS</h4>
+                                <p>95%</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 95%;"></div>
                             </div>
                         </div>
-                        <div class="box">
-                            <h4>Frameworks & Libraries</h4>
-                            <div class="skills-list">
-                                <span>React</span>
-                                <span>Bootstrap</span>
-                                <span>TypeScript</span>
+                        <div class="skill-item">
+                            <div class="skill-name-level">
+                                <h4>JavaScript</h4>
+                                <p>90%</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%;"></div>
                             </div>
                         </div>
-                        <div class="box">
-                            <h4>Styling</h4>
-                            <div class="skills-list">
-                                <span>Tailwind CSS</span>
-                                <span>Sass</span>
+                        <div class="skill-item">
+                            <div class="skill-name-level">
+                                <h4>React</h4>
+                                <p>85%</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name-level">
+                                <h4>TypeScript</h4>
+                                <p>80%</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%;"></div>
                             </div>
                         </div>
                     </div>
@@ -154,27 +200,44 @@
                     <div class="skills-header">
                         <h3>Backend</h3>
                     </div>
-                    <div class="skills-list">
-                        <span>Node.js</span>
-                        <span>Express</span>
-                        <span>PHP</span>
+                    <div class="skills-progress">
+                        <div class="skill-item">
+                            <div class="skill-name-level">
+                                <h4>Node.js</h4>
+                                <p>85%</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name-level">
+                                <h4>Express</h4>
+                                <p>80%</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name-level">
+                                <h4>PHP</h4>
+                                <p>75%</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%;"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="skills-box">
                     <div class="skills-header">
-                        <h3>Database</h3>
+                        <h3>Database & Tools</h3>
                     </div>
                     <div class="skills-list">
                         <span>MySQL</span>
                         <span>PostgreSQL</span>
                         <span>MongoDB</span>
-                    </div>
-                </div>
-                <div class="skills-box">
-                    <div class="skills-header">
-                        <h3>Tools</h3>
-                    </div>
-                    <div class="skills-list">
                         <span>Git</span>
                         <span>GitHub</span>
                         <span>Docker</span>
@@ -190,27 +253,85 @@
               <h1>Projects</h1>
               <span>Some of my recent work</span>
           </div>
+
+          <div class="projects-showcase">
+            <div class="laptop-showcase">
+              <div class="laptop-wrapper">
+                <div class="laptop">
+                  <div class="laptop-screen">
+                    <div class="laptop-screen-content">
+                      <div class="mini-site-header">
+                        <div class="mini-site-logo">FH</div>
+                        <div class="mini-site-nav">
+                          <div class="mini-nav-item"></div>
+                          <div class="mini-nav-item"></div>
+                          <div class="mini-nav-item"></div>
+                          <div class="mini-nav-item"></div>
+                        </div>
+                      </div>
+                      <div class="mini-site-hero">
+                        <div class="mini-site-text">
+                          <div class="mini-site-title"></div>
+                          <div class="mini-site-subtitle"></div>
+                          <div class="mini-site-buttons">
+                            <div class="mini-site-btn"></div>
+                            <div class="mini-site-btn"></div>
+                          </div>
+                        </div>
+                        <div class="mini-site-image">
+                          <img src="assets/images/profile1.jpg" alt="Fadi Hamad - Full Stack Developer" style="object-position: center 30%;">
+                        </div>
+                      </div>
+                      <div class="mini-site-projects">
+                        <div class="mini-project-card"></div>
+                        <div class="mini-project-card"></div>
+                        <div class="mini-project-card"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="laptop-keyboard">
+                    <div class="laptop-keys"></div>
+                    <div class="laptop-trackpad"></div>
+                  </div>
+                </div>
+                <div class="laptop-shadow"></div>
+              </div>
+              <div class="laptop-description">
+                <h3>Interactive Portfolio</h3>
+                <p>Explore my projects through this interactive showcase</p>
+              </div>
+            </div>
+          </div>
+
           <div class="project-container">
-            <div class="project-box">
-                <i class="uil uil-briefcase-alt"></i>
-                <h3>Web Project</h3>
-                <p>A responsive e-commerce platform built with React and Node.js</p>
-                <label><a href="advance_web_project.html">Read more</a></label>
+            <div class="project-box tilt-effect">
+                <div class="project-content">
+                    <i class="uil uil-briefcase-alt"></i>
+                    <h3>Web Project</h3>
+                    <p>A responsive e-commerce platform built with React and Node.js</p>
+                    <label><a href="advance_web_project.html">Read more</a></label>
+                </div>
             </div>
-            <div class="project-box">
-                <i class="uil uil-users-alt"></i>
-                <h3>Software Project</h3>
-                <p>Inventory management system with PHP and MySQL</p>
-                <label><a href="software_project.html">Read more</a></label>
+            <div class="project-box tilt-effect">
+                <div class="project-content">
+                    <i class="uil uil-users-alt"></i>
+                    <h3>Software Project</h3>
+                    <p>Inventory management system with PHP and MySQL</p>
+                    <label><a href="software_project.html">Read more</a></label>
+                </div>
             </div>
-            <div class="project-box">
-                <i class="uil uil-award"></i>
-                <h3>Advanced Software</h3>
-                <p>AI-powered recommendation engine with Python</p>
-                <label><a href="advanceSoftware_project.html">Read more</a></label>
+            <div class="project-box tilt-effect">
+                <div class="project-content">
+                    <i class="uil uil-award"></i>
+                    <h3>Advanced Software</h3>
+                    <p>AI-powered recommendation engine with Python</p>
+                    <label><a href="advanceSoftware_project.html">Read more</a></label>
+                </div>
             </div>
           </div>
        </section>
+
+
 
        <section class="section" id="certificates">
         <div class="top-header">
@@ -225,52 +346,78 @@
                 <div class="certificate-info">
                     <h3>Front End Web Developer</h3>
                     <p>Issued by Udacity - 2025</p>
-                    <a onclick="navigateTo('https://www.udacity.com/certificate/e/00fa8c48-edf1-11ef-aebf-8f2c72cb2f87')" class="btn">View Certificate</a>
+                    <a onclick="navigateTo('https://www.udacity.com/certificate/e/00fa8c48-edf1-11ef-aebf-8f2c72cb2f87')" class="btn blue-btn">View Certificate <i class="uil uil-external-link-alt"></i></a>
                 </div>
             </div>
             <div class="certificate-box">
                 <div class="certificate-img">
-                    <img src="assets/images/problem.jpeg" style="  object-position: center 10%;" alt="Problem Solving (Basic) Certificate">  </div>
+                    <img src="assets/images/problem.jpeg" style="object-position: center 10%;" alt="Problem Solving (Basic) Certificate">
+                </div>
                 <div class="certificate-info">
                     <h3>Problem Solving (Basic)</h3>
                     <p>Issued by HackerRank - 2024</p>
-                    <a onclick="navigateTo('https://www.hackerrank.com/certificates/iframe/daf31c625f0d')"  class="btn">View Certificate</a>
+                    <a onclick="navigateTo('https://www.hackerrank.com/certificates/iframe/daf31c625f0d')" class="btn blue-btn">View Certificate <i class="uil uil-external-link-alt"></i></a>
                 </div>
             </div>
-
         </div>
        </section>
 
        <section class="section" id="contact">
         <div class="top-header">
-            <h1>Get in touch</h1>
-            <span>Do you have a project in mind? Contact me here</span>
+            <h1>&lt;Contact /&gt;</h1>
+            <span>// Do you have a project in mind? Let's connect!</span>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="contact-info">
-                    <h2>Find Me <i class="uil uil-corner-right-down"></i></h2>
-                    <p><i class="uil uil-envelope"></i> Email: fadihamad40984@gmail.com</p>
-                    <p><i class="uil uil-phone"></i> Phone: +970-595-778-769</p>
-                    <p><i class="uil uil-map-marker"></i> Location: Palestine, Nablus</p>
-                    <p><i class="uil uil-envelope-info"></i> Fill the form to contact me <i class="uil uil-arrow-right"></i></p>
+        <div class="code-terminal">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="terminal-button red"></span>
+                    <span class="terminal-button yellow"></span>
+                    <span class="terminal-button green"></span>
                 </div>
+                <div class="terminal-title">contact.js</div>
             </div>
-            <div class="col">
-                <form action="https://formspree.io/f/meoqzozk" method="POST">
-                    <div class="form-control">
-                        <div class="form-inputs">
-                            <input type="text" class="input-field" name="name" placeholder="Your Name" required>
-                            <input type="email" class="input-field" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="text-area">
-                            <textarea name="message" placeholder="Your Message" required></textarea>
-                        </div>
-                        <div class="form-button">
-                            <button type="submit" class="btn">Send <i class="uil uil-message"></i></button>
+            <div class="terminal-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="contact-info">
+                            <div class="code-line"><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {</div>
+                            <div class="code-property">
+                                <span class="code-property-name">email:</span>
+                                <span class="code-string">"fadihamad40984@gmail.com"</span>,
+                            </div>
+                            <div class="code-property">
+                                <span class="code-property-name">phone:</span>
+                                <span class="code-string">"+970-595-778-769"</span>,
+                            </div>
+                            <div class="code-property">
+                                <span class="code-property-name">location:</span>
+                                <span class="code-string">"Palestine, Nablus"</span>,
+                            </div>
+                            <div class="code-line">};</div>
                         </div>
                     </div>
-                </form>
+                    <div class="col">
+                        <form id="contact-form">
+                            <div class="form-control">
+                                <div class="form-inputs">
+                                    <input type="text" class="input-field" name="user_name" placeholder="// Your Name" required>
+                                    <input type="email" class="input-field" name="user_email" placeholder="// Your Email" required>
+                                </div>
+                                <div class="text-area">
+                                    <textarea name="message" placeholder="/* Your Message */" required></textarea>
+                                </div>
+                                <div class="form-button">
+                                    <button type="submit" class="btn code-btn">
+                                        <span class="code-brackets">&lt;</span>
+                                        <span class="code-text">Submit</span>
+                                        <span class="code-brackets">/&gt;</span>
+                                    </button>
+                                </div>
+                                <div id="form-status" class="form-status"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
        </section>
@@ -291,6 +438,7 @@
                 <li class="footer_menu_list">
                     <a href="#projects">Projects</a>
                 </li>
+
                 <li class="footer_menu_list">
                     <a href="#certificates">Certificates</a>
                 </li>
@@ -318,6 +466,11 @@
 
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

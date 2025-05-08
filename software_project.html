@@ -12,7 +12,7 @@
 
     <title>Event Planner | Fadi Hamad</title>
 </head>
-<body> 
+<body>
    <div class="container">
       <nav id="header">
         <div class="nav-logo">
@@ -34,12 +34,16 @@
                     <div class="circle"></div>
                 </li>
                 <li class="nav_list">
+                    <a href="index.html#certificates" class="nav-link">Certificates</a>
+                    <div class="circle"></div>
+                </li>
+                <li class="nav_list">
                     <a href="index.html#contact" class="nav-link">Contact</a>
                     <div class="circle"></div>
                 </li>
             </ul>
         </div>
-      
+
         <div class="nav-menu-btn">
             <i class="uil uil-bars" onclick="myMenuFunction()"></i>
         </div>
@@ -55,29 +59,43 @@
       <main class="wrapper">
         <section class="section" id="project-details">
            <div class="top-header">
-              <h1 class="project-title">Event Planner</h1>
-              <p class="project-subtitle">Software Project</p>
+              <div class="code-header">
+  
+                 <h1 class="project-title"><span class="code-keyword">const</span> <span class="code-variable">project</span> = <span class="code-string">"Event Planner"</span>;</h1>
+                 <p class="project-subtitle"><span class="code-keyword">type</span>: <span class="code-string">"Software Project"</span>;</p>
+              </div>
            </div>
            <div class="project-content">
-              <div class="project-image">
-                 <img src="assets/images/event-planner.png" alt="Event Planner System Screenshot" class="project-screenshot">
+              <div class="project-image-container">
+                 <div class="project-image tilt-effect">
+                    <img src="assets/images/event-planner.png" alt="Event Planner System Screenshot" class="project-screenshot">
+                    <div class="code-overlay">
+                       <div class="code-line">public class EventPlanner {</div>
+                       <div class="code-line">  private List&lt;Event&gt; events;</div>
+                       <div class="code-line">  public void addEvent() { ... }</div>
+                       <div class="code-line">}</div>
+                    </div>
+                 </div>
                  <div class="project-links">
-                    <a href="https://github.com/fadihamad40984/Event_Planner--Software-project--" target="_blank" class="btn github-btn">
-                       <i class="uil uil-github"></i> View Repository
+                    <a href="https://github.com/fadihamad40984/Event_Planner--Software-project--" target="_blank" class="btn code-btn" onclick="window.open(this.href, '_blank'); return false;">
+                       <span class="code-brackets">&lt;</span>
+                       <i class="uil uil-github"></i>
+                       <span class="code-text">View_Repository</span>
+                       <span class="code-brackets">/&gt;</span>
                     </a>
                  </div>
               </div>
-              
+
               <div class="project-info">
                  <div class="info-section">
                     <h3><i class="uil uil-info-circle"></i> Description</h3>
                     <p>
-                       The Event Planner is a Java-based software application developed to streamline the planning and management of events. 
-                       This project incorporates advanced testing and analysis tools to ensure high-quality software delivery. It features 
+                       The Event Planner is a Java-based software application developed to streamline the planning and management of events.
+                       This project incorporates advanced testing and analysis tools to ensure high-quality software delivery. It features
                        interactive functionality and robust backend operations while integrating modern development practices.
                     </p>
                  </div>
-                 
+
                  <div class="info-section">
                     <h3><i class="uil uil-cog"></i> Technologies Used</h3>
                     <div class="tech-stack">
@@ -103,7 +121,7 @@
                        </div>
                     </div>
                  </div>
-                 
+
                  <div class="info-section">
                     <h3><i class="uil uil-star"></i> Key Features</h3>
                     <div class="features-grid">
@@ -133,7 +151,7 @@
                        </div>
                     </div>
                  </div>
-                 
+
                  <div class="info-section">
                     <h3><i class="uil uil-process"></i> Development Highlights</h3>
                     <div class="timeline">
@@ -155,7 +173,7 @@
            </div>
         </section>
      </main>
-     
+
     <footer>
         <div class="top-footer">
             <p>Fadi Hamad</p>
@@ -172,6 +190,9 @@
                     <a href="index.html#projects">Projects</a>
                 </li>
                 <li class="footer_menu_list">
+                    <a href="index.html#certificates">Certificates</a>
+                </li>
+                <li class="footer_menu_list">
                     <a href="index.html#contact">Contact</a>
                 </li>
             </ul>
@@ -180,7 +201,7 @@
           <div class="icon" onclick="navigateTo('https://www.instagram.com/fadi.hamad.161/')">
             <i class="uil uil-instagram"></i>
           </div>
-          <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/fadi-hamad-311352328/')">
+          <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/cefadihamad/')">
             <i class="uil uil-linkedin-alt"></i>
           </div>
           <div class="icon" onclick="navigateTo('https://github.com/fadihamad40984')">
@@ -194,6 +215,7 @@
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
     <script src="assets/js/mainpages.js"></script>
 </body>
 </html>

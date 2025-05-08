@@ -1,4 +1,4 @@
-// Professional Portfolio Scripts
+
 document.addEventListener("DOMContentLoaded", function() {
   function toggleMobileMenu() {
       const menu = document.getElementById("myNavMenu");
@@ -19,20 +19,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const darkModeToggle = document.getElementById("toggle-switch");
   const body = document.body;
-  
+
   function toggleDarkMode() {
       body.classList.toggle("dark");
       localStorage.setItem("darkMode", body.classList.contains("dark"));
       updateDarkModeIcon();
   }
-  
+
   function updateDarkModeIcon() {
       const isDark = body.classList.contains("dark");
       darkModeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
   }
-  
+
   darkModeToggle.addEventListener("click", toggleDarkMode);
-  
+
   if (localStorage.getItem("darkMode") === "true") {
       body.classList.add("dark");
       updateDarkModeIcon();
@@ -41,16 +41,16 @@ document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener("click", function(e) {
           e.preventDefault();
-          
+
           const targetId = this.getAttribute("href");
           const targetElement = document.querySelector(targetId);
-          
+
           if (targetElement) {
               window.scrollTo({
                   top: targetElement.offsetTop - 80,
                   behavior: "smooth"
               });
-              
+
               if (history.pushState) {
                   history.pushState(null, null, targetId);
               }
@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function() {
       if (url) {
           event.preventDefault();
           window.open(url, "_blank", "noopener,noreferrer");
-          // Here you could add analytics tracking
           console.log(`External link clicked: ${url}`);
       }
   }
@@ -101,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
           this.style.transform = "translateY(-2px)";
           this.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.15)";
       });
-      
+
       button.addEventListener("mouseleave", function() {
           this.style.transform = "";
           this.style.boxShadow = "";
@@ -112,6 +111,17 @@ document.addEventListener("DOMContentLoaded", function() {
       document.querySelector(".project-content").style.opacity = "1";
       document.querySelector(".project-content").style.transform = "translateY(0)";
   }, 300);
+
+
+  if (typeof VanillaTilt !== 'undefined') {
+      VanillaTilt.init(document.querySelectorAll(".tilt-effect"), {
+          max: 15,
+          speed: 400,
+          glare: true,
+          "max-glare": 0.3,
+          scale: 1.05
+      });
+  }
 });
 
 function navigateTo(url) {

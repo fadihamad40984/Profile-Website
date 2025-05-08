@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional portfolio of Fadi Hamad - Full Stack Developer">
-    <meta name="keywords" content="developer, portfolio, full stack, web development, software engineer">
+    <meta name="description" content="Village Management System project by Fadi Hamad - React and Node.js web application">
+    <meta name="keywords" content="react, node.js, graphql, web development, village management system">
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="assets/css/stylepages.css">
@@ -12,7 +12,7 @@
 
     <title>Village Management System | Fadi Hamad</title>
 </head>
-<body> 
+<body>
    <div class="container">
     <nav id="header">
       <div class="nav-logo">
@@ -34,12 +34,16 @@
                 <div class="circle"></div>
             </li>
             <li class="nav_list">
+                <a href="index.html#certificates" class="nav-link">Certificates</a>
+                <div class="circle"></div>
+            </li>
+            <li class="nav_list">
                 <a href="index.html#contact" class="nav-link">Contact</a>
                 <div class="circle"></div>
             </li>
         </ul>
       </div>
-      
+
       <div class="nav-menu-btn">
           <i class="uil uil-bars" onclick="myMenuFunction()"></i>
       </div>
@@ -55,33 +59,50 @@
     <main class="wrapper">
       <section class="section" id="project-details">
          <div class="top-header">
-            <h1 class="project-title">Village Management System</h1>
-            <p class="project-subtitle">Advanced Web Project</p>
+            <div class="code-header">
+
+               <h1 class="project-title"><span class="code-keyword">const</span> <span class="code-variable">project</span> = <span class="code-string">"Village Management System"</span>;</h1>
+               <p class="project-subtitle"><span class="code-keyword">type</span>: <span class="code-string">"Advanced Web Project"</span>;</p>
+            </div>
          </div>
-         
+
          <div class="project-content">
-            <div class="project-image">
-               <img src="assets/images/village-management.png" alt="Village Management System Screenshot" class="project-screenshot">
+            <div class="project-image-container">
+               <div class="project-image tilt-effect">
+                  <img src="assets/images/village-management.png" alt="Village Management System Screenshot" class="project-screenshot">
+                  <div class="code-overlay">
+                     <div class="code-line">&lt;div class="village-system"&gt;</div>
+                     <div class="code-line">  &lt;header&gt;Dashboard&lt;/header&gt;</div>
+                     <div class="code-line">  &lt;main&gt;Village Data&lt;/main&gt;</div>
+                     <div class="code-line">&lt;/div&gt;</div>
+                  </div>
+               </div>
                <div class="project-links">
-                  <a href="https://github.com/fadihamad40984/advanceWebProject-part1-" target="_blank" class="btn github-btn">
-                     <i class="uil uil-github"></i> Phase 1 Code
+                  <a href="https://github.com/fadihamad40984/advanceWebProject-part1-" target="_blank" class="btn code-btn" onclick="window.open(this.href, '_blank'); return false;">
+                     <span class="code-brackets">&lt;</span>
+                     <i class="uil uil-github"></i>
+                     <span class="code-text">Phase_1_Code</span>
+                     <span class="code-brackets">/&gt;</span>
                   </a>
-                  <a href="https://github.com/fadihamad40984/advancewebreactproject_part2" target="_blank" class="btn github-btn">
-                     <i class="uil uil-github"></i> Phase 2 Code
+                  <a href="https://github.com/fadihamad40984/advancewebreactproject_part2" target="_blank" class="btn code-btn" onclick="window.open(this.href, '_blank'); return false;">
+                     <span class="code-brackets">&lt;</span>
+                     <i class="uil uil-github"></i>
+                     <span class="code-text">Phase_2_Code</span>
+                     <span class="code-brackets">/&gt;</span>
                   </a>
                </div>
             </div>
-            
+
             <div class="project-info">
                <div class="info-section">
                   <h3><i class="uil uil-info-circle"></i> Description</h3>
                   <p>
-                     The Village Management System provides a streamlined approach to managing and displaying 
-                     demographic, geographical, and administrative details of various villages. It includes a real-time chat feature 
+                     The Village Management System provides a streamlined approach to managing and displaying
+                     demographic, geographical, and administrative details of various villages. It includes a real-time chat feature
                      using WebSocket integrated with the API, enabling instant communication among users and admins.
                   </p>
                </div>
-               
+
                <div class="info-section">
                   <h3><i class="uil uil-cog"></i> Technologies Used</h3>
                   <div class="tech-stack">
@@ -103,9 +124,9 @@
                      </div>
                   </div>
                </div>
-               
+
                <div class="info-section">
-                  <h3><i class="uil uil-user-md"></i> Roles & Features</h3>
+                  <h3><i class="uil uil-star"></i> Key Features</h3>
                   <div class="features-grid">
                      <div class="feature-card">
                         <h4>User</h4>
@@ -133,9 +154,9 @@
                      </div>
                   </div>
                </div>
-               
+
                <div class="info-section">
-                  <h3><i class="uil uil-process"></i> Development Phases</h3>
+                  <h3><i class="uil uil-process"></i> Development Highlights</h3>
                   <div class="timeline">
                      <div class="phase">
                         <h4>Phase 1</h4>
@@ -151,7 +172,7 @@
          </div>
       </section>
    </main>
-   
+
     <footer>
         <div class="top-footer">
             <p>Fadi Hamad</p>
@@ -168,6 +189,9 @@
                     <a href="index.html#projects">Projects</a>
                 </li>
                 <li class="footer_menu_list">
+                    <a href="index.html#certificates">Certificates</a>
+                </li>
+                <li class="footer_menu_list">
                     <a href="index.html#contact">Contact</a>
                 </li>
             </ul>
@@ -176,7 +200,7 @@
           <div class="icon" onclick="navigateTo('https://www.instagram.com/fadi.hamad.161/')">
             <i class="uil uil-instagram"></i>
           </div>
-          <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/fadi-hamad-311352328/')">
+          <div class="icon" onclick="navigateTo('https://www.linkedin.com/in/cefadihamad/')">
             <i class="uil uil-linkedin-alt"></i>
           </div>
           <div class="icon" onclick="navigateTo('https://github.com/fadihamad40984')">
@@ -189,6 +213,7 @@
     </footer>
    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
     <script src="assets/js/mainpages.js"></script>
 </body>
 </html>
