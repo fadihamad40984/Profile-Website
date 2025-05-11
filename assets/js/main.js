@@ -81,9 +81,10 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-function navigateTo(url) {
+// Define navigateTo at the global scope
+window.navigateTo = function(url) {
   window.open(url, "_blank", "noopener,noreferrer");
-}
+};
 
 window.onscroll = function () {
   headerShadow();
@@ -732,5 +733,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }, 100);
 });
+
 
 
