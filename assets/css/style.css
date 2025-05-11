@@ -115,13 +115,27 @@ p {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
+  font-weight: 500;
   color: var(--first-color);
   transition: color var(--transition-fast);
 }
 
 a:hover {
   color: var(--first-color-hover);
+}
+
+.nav-link, .footer-menu a, .social_icons a {
+  text-decoration: none; /* Keep navigation clean */
+}
+
+.nav-link:hover, .footer-menu a:hover {
+  text-decoration: underline;
+}
+
+.footer-link {
+  text-decoration: underline;
+  font-weight: 500;
 }
 
 ::-webkit-scrollbar {
@@ -2743,3 +2757,4 @@ body.dark .code-line {
     background-position: 0% 50%;
   }
 }
+
