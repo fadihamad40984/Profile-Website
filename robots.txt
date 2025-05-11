@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://fadihamad.com/sitemap.xml
+Sitemap: https://cefadihamad.me/sitemap.xml
