@@ -81,9 +81,9 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-function navigateTo(url) {
-  window.open(url, "_blank");
-}
+// function navigateTo(url) {
+//   window.open(url, "_blank", "noopener,noreferrer");
+// }
 
 window.onscroll = function () {
   headerShadow();
@@ -707,3 +707,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   addTextHighlightEffect();
 });
+
