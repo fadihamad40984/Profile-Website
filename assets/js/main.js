@@ -81,9 +81,9 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// function navigateTo(url) {
-//   window.open(url, "_blank", "noopener,noreferrer");
-// }
+function navigateTo(url) {
+  window.open(url, "_blank", "noopener,noreferrer");
+}
 
 window.onscroll = function () {
   headerShadow();
@@ -707,4 +707,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
   addTextHighlightEffect();
 });
+
+// Use passive event listeners for scroll events
+window.addEventListener("scroll", scrollActive, { passive: true });
+window.addEventListener("scroll", animateProgress, { passive: true });
+window.addEventListener("scroll", headerShadow, { passive: true });
+
+// Defer non-critical JavaScript
+document.addEventListener("DOMContentLoaded", function() {
+  // Initialize non-critical animations after page load
+  setTimeout(() => {
+    if (typeof VanillaTilt !== "undefined") {
+      VanillaTilt.init(document.querySelectorAll(".tilt-effect"), {
+        max: 15,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.2,
+      });
+    }
+    
+    // Initialize particles.js after page load
+    if (typeof particlesJS !== "undefined") {
+      initParticles();
+    }
+  }, 100);
+});
+
 
