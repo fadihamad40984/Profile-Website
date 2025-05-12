@@ -114,9 +114,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   setTimeout(() => {
-    document.querySelector(".project-content").style.opacity = "1";
-    document.querySelector(".project-content").style.transform =
-      "translateY(0)";
+    const projectContent = document.querySelector(".project-content");
+    if (projectContent) {
+      projectContent.style.opacity = "1";
+      projectContent.style.transform = "translateY(0)";
+    }
   }, 300);
 
   if (typeof VanillaTilt !== "undefined") {
