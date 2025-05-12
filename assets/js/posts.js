@@ -48,11 +48,17 @@ function setupEventListeners() {
 let blogPosts = [];
 
 async function displayPosts() {
+    // Get DOM elements
     const postsList = document.getElementById('postsList');
     const noPostsMessage = document.getElementById('noPostsMessage');
     const searchInput = document.getElementById('postSearch');
     const categoryFilter = document.getElementById('categoryFilter');
     const sortSelect = document.getElementById('sortPosts');
+
+    if (!postsList) {
+        console.error('Posts list element not found');
+        return;
+    }
 
     // Show loading state
     postsList.innerHTML = `
@@ -64,44 +70,46 @@ async function displayPosts() {
 
     try {
         // Get posts from Firebase
-        let snapshot = await postsCollection.orderBy('createdAt', 'desc').get();
+        const snapshot = await postsCollection.orderBy('createdAt', 'desc').get();
+
+        // Store posts in global variable
         blogPosts = snapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data()
         }));
 
         // Create a working copy for filtering
-        let posts = [...blogPosts];
+        let filteredPosts = [...blogPosts];
 
         // Apply search filter
         if (searchInput && searchInput.value.trim() !== '') {
             const searchTerm = searchInput.value.toLowerCase().trim();
-            posts = posts.filter(post =>
-                post.title.toLowerCase().includes(searchTerm) ||
-                post.content.toLowerCase().includes(searchTerm) ||
-                post.excerpt.toLowerCase().includes(searchTerm)
+            filteredPosts = filteredPosts.filter(post =>
+                post.title?.toLowerCase().includes(searchTerm) ||
+                post.content?.toLowerCase().includes(searchTerm) ||
+                post.excerpt?.toLowerCase().includes(searchTerm)
             );
         }
 
         // Apply category filter
         if (categoryFilter && categoryFilter.value !== '') {
-            posts = posts.filter(post => post.category === categoryFilter.value);
+            filteredPosts = filteredPosts.filter(post => post.category === categoryFilter.value);
         }
 
         // Apply sorting
         if (sortSelect) {
             switch(sortSelect.value) {
                 case 'newest':
-                    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
                     break;
                 case 'oldest':
-                    posts.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    filteredPosts.sort((a, b) => new Date(a.date) - new Date(b.date));
                     break;
                 case 'a-z':
-                    posts.sort((a, b) => a.title.localeCompare(b.title));
+                    filteredPosts.sort((a, b) => a.title.localeCompare(b.title));
                     break;
                 case 'z-a':
-                    posts.sort((a, b) => b.title.localeCompare(a.title));
+                    filteredPosts.sort((a, b) => b.title.localeCompare(a.title));
                     break;
             }
         }
@@ -110,7 +118,7 @@ async function displayPosts() {
         postsList.innerHTML = '';
 
         // Show message if no posts
-        if (posts.length === 0) {
+        if (filteredPosts.length === 0) {
             if (noPostsMessage) {
                 postsList.appendChild(noPostsMessage);
                 noPostsMessage.style.display = 'block';
@@ -132,28 +140,37 @@ async function displayPosts() {
         }
 
         // Render each post
-        posts.forEach(post => {
+        filteredPosts.forEach(post => {
             const postCard = document.createElement('div');
             postCard.className = 'post-card';
 
-            const postDate = new Date(post.date);
-            const formattedDate = postDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+            // Format date
+            let formattedDate = 'No date';
+            if (post.date) {
+                try {
+                    const postDate = new Date(post.date);
+                    formattedDate = postDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                } catch (e) {
+                    console.warn('Invalid date format:', post.date);
+                }
+            }
 
+            // Create post HTML
             postCard.innerHTML = `
                 <div class="post-card-image ${!post.image ? 'placeholder' : ''}">
                     ${post.image ? `<img src="${post.image}" alt="${post.title}" onerror="this.parentNode.classList.add('placeholder'); this.style.display='none';">` : ''}
                 </div>
                 <div class="post-card-content">
-                    <h3 class="post-card-title">${post.title}</h3>
+                    <h3 class="post-card-title">${post.title || 'Untitled Post'}</h3>
                     <div class="post-card-meta">
                         <span class="post-card-date">${formattedDate}</span>
-                        <span class="post-card-category">${post.category}</span>
+                        <span class="post-card-category">${post.category || 'Uncategorized'}</span>
                     </div>
-                    <p class="post-card-excerpt">${post.excerpt}</p>
+                    <p class="post-card-excerpt">${post.excerpt || 'No excerpt available'}</p>
                     <div class="post-card-actions">
                         <button class="edit-btn" data-id="${post.id}">
                             <i class="uil uil-edit"></i> Edit
@@ -165,8 +182,10 @@ async function displayPosts() {
                 </div>
             `;
 
+            // Add to DOM
             postsList.appendChild(postCard);
 
+            // Add event listeners
             postCard.querySelector('.edit-btn').addEventListener('click', function() {
                 editPost(post.id);
             });
