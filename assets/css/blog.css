@@ -1,4 +1,3 @@
-/* Blog specific styles */
 .blog-filters {
   display: flex;
   justify-content: space-between;
@@ -175,7 +174,6 @@
   font-size: 1.2rem;
 }
 
-/* No posts message */
 .no-posts-message {
   grid-column: 1 / -1;
   background-color: var(--white-color);
@@ -219,7 +217,6 @@
   box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
 }
 
-/* Dark mode adjustments */
 body.dark .blog-post {
   background-color: var(--dark-card-color);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -257,7 +254,6 @@ body.dark .no-posts-message p {
   color: var(--dark-color-white);
 }
 
-/* Footer styles */
 footer {
   background: linear-gradient(to right, var(--first-color), var(--first-color-hover));
   color: white;
@@ -411,7 +407,6 @@ body.dark .social-icons .icon:hover i {
   text-decoration: underline;
 }
 
-/* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .blog-container {
     grid-template-columns: 1fr;

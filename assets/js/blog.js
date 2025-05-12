@@ -2,91 +2,152 @@ let blogPosts = [];
 
 const samplePosts = [
     {
-        id: 1,
         title: "Getting Started with React Hooks",
         date: "2023-01-15T12:00:00",
         category: "React",
         excerpt: "React Hooks have revolutionized how we write React components. Learn how to use useState, useEffect, and more in this comprehensive guide.",
         content: "React Hooks were introduced in React 16.8 as a way to use state and other React features without writing a class component. They allow you to 'hook into' React state and lifecycle features from function components.\n\nThe most commonly used hooks are:\n\n- useState: For managing state in functional components\n- useEffect: For handling side effects like data fetching\n- useContext: For consuming context in a more elegant way\n- useReducer: For managing more complex state logic\n- useRef: For persisting values across renders without causing re-renders\n\nHooks make your code more reusable and easier to test. They also help in organizing your logic better than the lifecycle methods in class components.",
-        image: "./assets/images/blog-placeholder.jpg"
+        image: null,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
     },
     {
-        id: 2,
         title: "Building RESTful APIs with Node.js and Express",
         date: "2023-02-03T14:30:00",
         category: "Node.js",
         excerpt: "Learn how to create robust and scalable RESTful APIs using Node.js and Express framework with best practices for authentication and error handling.",
         content: "Express.js is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications. It's the most popular framework for building APIs with Node.js.\n\nHere's a basic structure for creating a RESTful API with Express:\n\n```javascript\nconst express = require('express');\nconst app = express();\n\napp.use(express.json());\n\napp.get('/api/items', (req, res) => {\n  // Get all items\n});\n\napp.get('/api/items/:id', (req, res) => {\n  // Get item by ID\n});\n\napp.post('/api/items', (req, res) => {\n  // Create new item\n});\n\napp.put('/api/items/:id', (req, res) => {\n  // Update item\n});\n\napp.delete('/api/items/:id', (req, res) => {\n  // Delete item\n});\n\napp.listen(3000, () => console.log('Server running on port 3000'));\n```\n\nFor authentication, you can use packages like Passport.js or JWT (JSON Web Tokens). For error handling, middleware functions are your best friend in Express.",
-        image: "./assets/images/blog-placeholder.jpg"
+        image: null,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
     },
     {
-        id: 3,
         title: "CSS Grid vs Flexbox: When to Use Each",
         date: "2023-03-20T09:15:00",
         category: "CSS",
         excerpt: "Understand the key differences between CSS Grid and Flexbox, and learn when to use each layout system for optimal web design.",
         content: "CSS Grid and Flexbox are two powerful layout systems in CSS, each with their own strengths and ideal use cases.\n\n**Flexbox** is designed for one-dimensional layouts - either a row or a column. It's perfect for:\n- Navigation menus\n- Card layouts with equal height but different content\n- Centering elements vertically and horizontally\n- Distributing space between items in a container\n\n**CSS Grid** is designed for two-dimensional layouts - rows and columns together. It's ideal for:\n- Overall page layouts\n- Complex grid-based designs\n- Placing elements in exact positions\n- Creating layouts where items span multiple rows and columns\n\nIn practice, you'll often use both: Grid for the overall layout, and Flexbox for the components within that layout. They work beautifully together!",
-        image: "./assets/images/blog-placeholder.jpg"
+        image: null,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }
 ];
 
-function initializeBlogPosts() {
-    const storedPosts = localStorage.getItem('blogPosts');
+async function initializeBlogPosts() {
+    try {
+        if (blogPosts.length > 0) {
+            return blogPosts;
+        }
 
-    if (storedPosts) {
-        blogPosts = JSON.parse(storedPosts);
-    } else {
-        blogPosts = samplePosts;
-        localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
+        const snapshot = await postsCollection.orderBy('createdAt', 'desc').get();
+
+        if (snapshot.empty) {
+            console.log('No posts found, adding sample posts...');
+
+            const currentUser = firebase.auth().currentUser;
+            if (currentUser) {
+                const addPromises = samplePosts.map(post => postsCollection.add(post));
+                await Promise.all(addPromises);
+
+                const newSnapshot = await postsCollection.orderBy('createdAt', 'desc').get();
+                blogPosts = newSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+            } else {
+                blogPosts = samplePosts.map((post, index) => ({
+                    id: `sample-${index + 1}`,
+                    ...post
+                }));
+            }
+        } else {
+            blogPosts = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+        }
+
+        return blogPosts;
+    } catch (error) {
+        console.error('Error initializing blog posts:', error);
+
+        blogPosts = samplePosts.map((post, index) => ({
+            id: `sample-${index + 1}`,
+            ...post
+        }));
+
+        return blogPosts;
     }
-
-    return blogPosts;
 }
 
-function renderBlogPosts() {
+async function renderBlogPosts() {
     const blogContainer = document.getElementById('blogPosts');
     if (!blogContainer) return;
 
-    initializeBlogPosts();
+    blogContainer.innerHTML = `
+        <div class="loading-posts">
+            <i class="uil uil-spinner"></i>
+            <p>Loading posts...</p>
+        </div>
+    `;
 
-    blogContainer.innerHTML = '';
+    try {
+        await initializeBlogPosts();
 
-    blogPosts.forEach(post => {
-        const postElement = document.createElement('div');
-        postElement.className = 'blog-post';
+        blogContainer.innerHTML = '';
 
-        const postDate = new Date(post.date);
-        const formattedDate = postDate.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+        if (blogPosts.length === 0) {
+            blogContainer.innerHTML = `
+                <div class="no-posts-message">
+                    <i class="uil uil-file-question-alt"></i>
+                    <p>No posts found. Check back later!</p>
+                </div>
+            `;
+            return;
+        }
+
+        blogPosts.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.className = 'blog-post';
+
+            const postDate = new Date(post.date);
+            const formattedDate = postDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            postElement.innerHTML = `
+                <div class="post-header">
+                    <h2>${post.title}</h2>
+                    <div class="post-meta">
+                        <span class="post-date">${formattedDate}</span>
+                        <span class="post-category">${post.category}</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>${post.excerpt}</p>
+                </div>
+                <div class="post-footer">
+                    <a href="#" class="read-more" data-id="${post.id}">Read More</a>
+                </div>
+            `;
+            blogContainer.appendChild(postElement);
         });
 
-        postElement.innerHTML = `
-            <div class="post-header">
-                <h2>${post.title}</h2>
-                <div class="post-meta">
-                    <span class="post-date">${formattedDate}</span>
-                    <span class="post-category">${post.category}</span>
-                </div>
-            </div>
-            <div class="post-content">
-                <p>${post.excerpt}</p>
-            </div>
-            <div class="post-footer">
-                <a href="#" class="read-more" data-id="${post.id}">Read More</a>
+        document.querySelectorAll('.read-more').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const postId = this.getAttribute('data-id');
+                openBlogPost(postId);
+            });
+        });
+    } catch (error) {
+        console.error('Error rendering blog posts:', error);
+        blogContainer.innerHTML = `
+            <div class="error-message">
+                <i class="uil uil-exclamation-triangle"></i>
+                <p>There was an error loading the blog posts. Please try again later.</p>
             </div>
         `;
-        blogContainer.appendChild(postElement);
-    });
-
-    document.querySelectorAll('.read-more').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const postId = parseInt(this.getAttribute('data-id'));
-            openBlogPost(postId);
-        });
-    });
+    }
 }
 
 function openBlogPost(postId) {
@@ -145,72 +206,174 @@ function openBlogPost(postId) {
     });
 }
 
-function addBlogPost(postData) {
-    initializeBlogPosts();
+async function addBlogPost(postData) {
+    try {
+        if (!firebase.auth().currentUser) {
+            throw new Error('User must be logged in to add posts');
+        }
 
-    const newId = blogPosts.length > 0
-        ? Math.max(...blogPosts.map(post => post.id)) + 1
-        : 1;
+        const newPost = {
+            title: postData.title,
+            date: new Date().toISOString(),
+            category: postData.category,
+            excerpt: postData.excerpt || postData.content.substring(0, 150) + '...',
+            content: postData.content,
+            image: postData.image || null,
+            author: firebase.auth().currentUser.email,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
 
-    const newPost = {
-        id: newId,
-        title: postData.title,
-        date: new Date().toISOString(),
-        category: postData.category,
-        excerpt: postData.excerpt || postData.content.substring(0, 150) + '...',
-        content: postData.content,
-        image: postData.image || './assets/images/blog-placeholder.jpg'
-    };
+        const docRef = await postsCollection.add(newPost);
 
-    blogPosts.push(newPost);
+        const doc = await docRef.get();
+        const addedPost = {
+            id: doc.id,
+            ...doc.data()
+        };
 
-    localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
+        blogPosts.unshift(addedPost);
 
-    return newPost;
+        return addedPost;
+    } catch (error) {
+        console.error('Error adding blog post:', error);
+        throw error;
+    }
 }
 
-function updateBlogPost(postId, postData) {
-    initializeBlogPosts();
+async function updateBlogPost(postId, postData) {
+    try {
+        if (!firebase.auth().currentUser) {
+            throw new Error('User must be logged in to update posts');
+        }
 
-    const postIndex = blogPosts.findIndex(post => post.id === postId);
+        const updateData = {
+            title: postData.title,
+            category: postData.category,
+            excerpt: postData.excerpt || postData.content.substring(0, 150) + '...',
+            content: postData.content,
+            updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
 
-    if (postIndex === -1) return null;
+        if (postData.image) {
+            updateData.image = postData.image;
+        }
 
-    blogPosts[postIndex] = {
-        ...blogPosts[postIndex],
-        title: postData.title,
-        category: postData.category,
-        excerpt: postData.excerpt || postData.content.substring(0, 150) + '...',
-        content: postData.content,
-        image: postData.image || blogPosts[postIndex].image
-    };
+        await postsCollection.doc(postId).update(updateData);
 
-    localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
+        const doc = await postsCollection.doc(postId).get();
+        const updatedPost = {
+            id: doc.id,
+            ...doc.data()
+        };
 
-    return blogPosts[postIndex];
+        const postIndex = blogPosts.findIndex(post => post.id === postId);
+        if (postIndex !== -1) {
+            blogPosts[postIndex] = updatedPost;
+        }
+
+        return updatedPost;
+    } catch (error) {
+        console.error('Error updating blog post:', error);
+        throw error;
+    }
 }
 
-function deleteBlogPost(postId) {
-    initializeBlogPosts();
+async function deleteBlogPost(postId) {
+    try {
+        if (!firebase.auth().currentUser) {
+            throw new Error('User must be logged in to delete posts');
+        }
 
-    blogPosts = blogPosts.filter(post => post.id !== postId);
+        await postsCollection.doc(postId).delete();
 
-    localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
+        blogPosts = blogPosts.filter(post => post.id !== postId);
 
-    return true;
+        return true;
+    } catch (error) {
+        console.error('Error deleting blog post:', error);
+        throw error;
+    }
 }
 
-function getBlogPost(postId) {
-    initializeBlogPosts();
+async function getBlogPost(postId) {
+    try {
+        let post = blogPosts.find(p => p.id === postId);
 
-    return blogPosts.find(post => post.id === postId) || null;
+        if (!post) {
+            const doc = await postsCollection.doc(postId).get();
+
+            if (!doc.exists) {
+                return null;
+            }
+
+            post = {
+                id: doc.id,
+                ...doc.data()
+            };
+
+            blogPosts.push(post);
+        }
+
+        return post;
+    } catch (error) {
+        console.error('Error getting blog post:', error);
+        throw error;
+    }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initializeBlogPosts();
+document.addEventListener('DOMContentLoaded', async function() {
+    if (typeof firebase === 'undefined') {
+        console.error('Firebase is not initialized. Make sure firebase-config.js is loaded.');
+        return;
+    }
 
-    if (document.getElementById('blogPosts')) {
-        renderBlogPosts();
+    addUtilityStyles();
+
+    firebase.auth().onAuthStateChanged(async function(user) {
+        if (document.getElementById('blogPosts')) {
+            renderBlogPosts();
+        }
+
+        if (document.querySelector('.dashboard-container') && !user) {
+            window.location.href = 'login.html';
+        }
+    });
+
+    function addUtilityStyles() {
+        const utilityStyle = document.createElement('style');
+        utilityStyle.textContent = `
+            .loading-posts {
+                text-align: center;
+                padding: 50px 20px;
+                color: var(--light-text-color);
+            }
+
+            .loading-posts i {
+                font-size: 2rem;
+                margin-bottom: 15px;
+                display: inline-block;
+                animation: spin 1s linear infinite;
+            }
+
+            .error-message {
+                text-align: center;
+                padding: 50px 20px;
+                color: #e74c3c;
+                background-color: rgba(231, 76, 60, 0.1);
+                border-radius: 10px;
+            }
+
+            .error-message i {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(utilityStyle);
     }
 
     const modalStyle = document.createElement('style');
