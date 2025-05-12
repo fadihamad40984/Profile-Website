@@ -124,6 +124,51 @@ async function displayPosts() {
         if (noPostsMessage) {
             noPostsMessage.style.display = 'none';
         }
+
+        // Render each post
+        posts.forEach(post => {
+            const postCard = document.createElement('div');
+            postCard.className = 'post-card';
+
+            const postDate = new Date(post.date);
+            const formattedDate = postDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            postCard.innerHTML = `
+                <div class="post-card-image ${!post.image ? 'placeholder' : ''}">
+                    ${post.image ? `<img src="${post.image}" alt="${post.title}" onerror="this.parentNode.classList.add('placeholder'); this.style.display='none';">` : ''}
+                </div>
+                <div class="post-card-content">
+                    <h3 class="post-card-title">${post.title}</h3>
+                    <div class="post-card-meta">
+                        <span class="post-card-date">${formattedDate}</span>
+                        <span class="post-card-category">${post.category}</span>
+                    </div>
+                    <p class="post-card-excerpt">${post.excerpt}</p>
+                    <div class="post-card-actions">
+                        <button class="edit-btn" data-id="${post.id}">
+                            <i class="uil uil-edit"></i> Edit
+                        </button>
+                        <button class="delete-btn" data-id="${post.id}">
+                            <i class="uil uil-trash-alt"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            postsList.appendChild(postCard);
+
+            postCard.querySelector('.edit-btn').addEventListener('click', function() {
+                editPost(post.id);
+            });
+
+            postCard.querySelector('.delete-btn').addEventListener('click', function() {
+                deletePost(post.id);
+            });
+        });
     } catch (error) {
         console.error('Error getting posts:', error);
         postsList.innerHTML = `
@@ -133,50 +178,6 @@ async function displayPosts() {
             </div>
         `;
     }
-
-    posts.forEach(post => {
-        const postCard = document.createElement('div');
-        postCard.className = 'post-card';
-
-        const postDate = new Date(post.date);
-        const formattedDate = postDate.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-
-        postCard.innerHTML = `
-            <div class="post-card-image ${!post.image ? 'placeholder' : ''}">
-                ${post.image ? `<img src="${post.image}" alt="${post.title}" onerror="this.parentNode.classList.add('placeholder'); this.style.display='none';">` : ''}
-            </div>
-            <div class="post-card-content">
-                <h3 class="post-card-title">${post.title}</h3>
-                <div class="post-card-meta">
-                    <span class="post-card-date">${formattedDate}</span>
-                    <span class="post-card-category">${post.category}</span>
-                </div>
-                <p class="post-card-excerpt">${post.excerpt}</p>
-                <div class="post-card-actions">
-                    <button class="edit-btn" data-id="${post.id}">
-                        <i class="uil uil-edit"></i> Edit
-                    </button>
-                    <button class="delete-btn" data-id="${post.id}">
-                        <i class="uil uil-trash-alt"></i> Delete
-                    </button>
-                </div>
-            </div>
-        `;
-
-        postsList.appendChild(postCard);
-
-        postCard.querySelector('.edit-btn').addEventListener('click', function() {
-            editPost(post.id);
-        });
-
-        postCard.querySelector('.delete-btn').addEventListener('click', function() {
-            deletePost(post.id);
-        });
-    });
 }
 
 function editPost(postId) {
