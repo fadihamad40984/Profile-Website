@@ -99,60 +99,107 @@ async function renderBlogPosts() {
     }
 }
 
-function openBlogPost(postId) {
-    const post = blogPosts.find(p => p.id === postId);
-    if (!post) return;
+async function openBlogPost(postId) {
+    try {
+        console.log('Opening post with ID:', postId);
 
-    const modal = document.createElement('div');
-    modal.className = 'blog-post-modal';
+        // Try to find post in memory first
+        let post = blogPosts.find(p => p.id === postId);
 
-    const postDate = new Date(post.date);
-    const formattedDate = postDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
+        // If not found in memory, try to fetch from Firebase
+        if (!post) {
+            console.log('Post not found in memory, fetching from Firebase...');
+            const doc = await postsCollection.doc(postId).get();
 
-    modal.innerHTML = `
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <div class="post-full">
-                <h1 class="post-title">${post.title}</h1>
-                <div class="post-meta">
-                    <span class="post-date">${formattedDate}</span>
-                    <span class="post-category">${post.category}</span>
+            if (!doc.exists) {
+                console.error('Post not found in Firebase');
+                alert('Sorry, this post could not be found.');
+                return;
+            }
+
+            post = {
+                id: doc.id,
+                ...doc.data()
+            };
+
+            // Add to local cache
+            blogPosts.push(post);
+        }
+
+        console.log('Post found:', post);
+
+        // Create modal
+        const modal = document.createElement('div');
+        modal.className = 'blog-post-modal';
+
+        // Format date
+        let formattedDate = 'No date';
+        if (post.date) {
+            try {
+                const postDate = new Date(post.date);
+                formattedDate = postDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } catch (e) {
+                console.warn('Invalid date format:', post.date);
+            }
+        }
+
+        // Handle content safely
+        const content = post.content ? post.content.replace(/\n/g, '<br>') : 'No content available';
+
+        // Create modal HTML
+        modal.innerHTML = `
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div class="post-full">
+                    <h1 class="post-title">${post.title || 'Untitled Post'}</h1>
+                    <div class="post-meta">
+                        <span class="post-date">${formattedDate}</span>
+                        <span class="post-category">${post.category || 'Uncategorized'}</span>
+                    </div>
+                    ${post.image ? `<div class="post-image"><img src="${post.image}" alt="${post.title}"></div>` : ''}
+                    <div class="post-content-full">${content}</div>
                 </div>
-                ${post.image ? `<div class="post-image"><img src="${post.image}" alt="${post.title}"></div>` : ''}
-                <div class="post-content-full">${post.content.replace(/\n/g, '<br>')}</div>
             </div>
-        </div>
-    `;
+        `;
 
-    document.body.appendChild(modal);
+        // Add modal to document
+        document.body.appendChild(modal);
 
-    document.body.style.overflow = 'hidden';
+        // Prevent scrolling
+        document.body.style.overflow = 'hidden';
 
-    setTimeout(() => {
-        modal.classList.add('active');
-    }, 10);
-
-    modal.querySelector('.modal-close').addEventListener('click', function() {
-        modal.classList.remove('active');
+        // Animate modal
         setTimeout(() => {
-            document.body.removeChild(modal);
-            document.body.style.overflow = '';
-        }, 300);
-    });
+            modal.classList.add('active');
+        }, 10);
 
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
+        // Close button event
+        modal.querySelector('.modal-close').addEventListener('click', function() {
             modal.classList.remove('active');
             setTimeout(() => {
                 document.body.removeChild(modal);
                 document.body.style.overflow = '';
             }, 300);
-        }
-    });
+        });
+
+        // Click outside to close
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    document.body.removeChild(modal);
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+        });
+    } catch (error) {
+        console.error('Error opening blog post:', error);
+        alert('There was an error opening this post. Please try again later.');
+    }
 }
 
 async function addBlogPost(postData) {
