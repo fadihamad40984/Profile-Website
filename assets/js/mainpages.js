@@ -3,19 +3,49 @@ document.addEventListener("DOMContentLoaded", function () {
     const menu = document.getElementById("myNavMenu");
     menu.classList.toggle("responsive");
     const icon = document.querySelector(".nav-menu-btn i");
+
+    // Toggle between bars and close icon
+    if (menu.classList.contains("responsive")) {
+      icon.classList.remove("uil-bars");
+      icon.classList.add("uil-times");
+    } else {
+      icon.classList.remove("uil-times");
+      icon.classList.add("uil-bars");
+    }
+
     icon.setAttribute("aria-expanded", menu.classList.contains("responsive"));
+
+    // Prevent body scrolling when menu is open
+    if (menu.classList.contains("responsive")) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
   }
 
   document
     .querySelector(".nav-menu-btn")
     .addEventListener("click", toggleMobileMenu);
 
-  document.querySelectorAll(".nav-menu a").forEach((link) => {
+  // Close menu when clicking on a link
+  document.querySelectorAll(".nav_menu_list a").forEach((link) => {
     link.addEventListener("click", function () {
       if (window.innerWidth <= 768) {
         toggleMobileMenu();
       }
     });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", function(event) {
+    const menu = document.getElementById("myNavMenu");
+    const menuBtn = document.querySelector(".nav-menu-btn");
+
+    if (menu.classList.contains("responsive") &&
+        !menu.contains(event.target) &&
+        !menuBtn.contains(event.target)) {
+      toggleMobileMenu();
+    }
   });
 
   const darkModeToggle = document.getElementById("toggle-switch");

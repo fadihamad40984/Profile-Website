@@ -1,0 +1,373 @@
+/*
+ * Blog Responsive CSS
+ * This file contains responsive styles for the blog page
+ */
+
+/* Base responsive adjustments */
+html {
+  font-size: 16px;
+}
+
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 15px;
+  }
+
+  .wrapper {
+    max-width: 95%;
+  }
+}
+
+/* Large Tablet Styles */
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 14px;
+  }
+
+  .blog-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+  }
+
+  .post-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .post-content p {
+    font-size: 0.95rem;
+  }
+
+  /* Modal adjustments */
+  .blog-post-modal .modal-content {
+    max-width: 700px;
+    padding: 25px;
+  }
+
+  .blog-post-modal .post-title {
+    font-size: 1.8rem;
+  }
+
+  /* Footer adjustments */
+  .footer-menu-list {
+    gap: 15px;
+  }
+}
+
+/* Tablet Styles */
+@media screen and (max-width: 992px) {
+  .blog-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .post-header {
+    padding: 20px 20px 10px;
+  }
+
+  .post-header h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .post-content {
+    padding: 0 20px 15px;
+  }
+
+  .post-footer {
+    padding: 12px 20px;
+  }
+
+  /* Modal adjustments */
+  .blog-post-modal .modal-content {
+    max-width: 90%;
+  }
+
+  /* Navigation adjustments */
+  nav {
+    padding-inline: 4vw;
+  }
+
+  .nav-link {
+    padding: 8px 10px;
+    margin-inline: 3px;
+  }
+}
+
+/* Mobile Landscape Styles */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 13px;
+  }
+
+  .wrapper {
+    padding: 90px 15px 30px;
+  }
+
+  .blog-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .blog-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    margin: 20px 0;
+  }
+
+  .search-container,
+  .filter-container {
+    width: 100%;
+  }
+
+  .search-container input,
+  .filter-container select {
+    font-size: 0.95rem;
+    padding: 10px 15px 10px 40px;
+  }
+
+  .search-container i {
+    left: 12px;
+  }
+
+  /* Modal adjustments */
+  .blog-post-modal .modal-content {
+    width: 95%;
+    padding: 20px;
+    max-height: 85vh;
+  }
+
+  .blog-post-modal .post-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .blog-post-modal .post-meta {
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .blog-post-modal .post-content-full {
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .blog-post-modal .modal-close {
+    top: 10px;
+    right: 10px;
+    font-size: 1.3rem;
+  }
+
+  /* Footer adjustments */
+  .middle-footer {
+    flex-direction: column;
+    padding: 25px 20px;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-menu-list {
+    justify-content: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  footer {
+    border-radius: 15px 15px 0 0;
+    margin-top: 50px;
+  }
+
+  .top-footer p {
+    font-size: 1.7rem;
+  }
+
+  .pagination-btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+
+  /* Navigation adjustments */
+  .nav-menu {
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    height: 100%;
+    transition: var(--transition);
+    z-index: 99;
+  }
+
+  body.dark .nav-menu {
+    background: rgba(30, 30, 30, 0.95);
+  }
+
+  .nav-menu.responsive {
+    left: 0;
+  }
+
+  .nav_menu_list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-link {
+    margin: 15px 0;
+    padding: 10px 20px;
+  }
+
+  .active-link::after {
+    bottom: -5px;
+  }
+}
+
+/* Mobile Portrait Styles */
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+
+  .wrapper {
+    padding: 80px 12px 20px;
+  }
+
+  .blog-container {
+    gap: 20px;
+  }
+
+  .blog-post {
+    border-radius: 12px;
+  }
+
+  .post-header h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .post-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .post-category {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+  }
+
+  /* Modal adjustments for small screens */
+  .blog-post-modal .modal-content {
+    width: 100%;
+    padding: 15px;
+    border-radius: 0;
+    max-height: 100vh;
+    height: 100vh;
+    transform: translateY(100%);
+  }
+
+  .blog-post-modal {
+    align-items: flex-end;
+  }
+
+  .blog-post-modal.active .modal-content {
+    transform: translateY(0);
+  }
+
+  .blog-post-modal .post-title {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    padding-right: 30px; /* Make room for close button */
+  }
+
+  .blog-post-modal .post-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .blog-post-modal .post-content-full {
+    font-size: 0.9rem;
+    margin-bottom: 30px; /* Add space at the bottom for scrolling */
+  }
+
+  .blog-post-modal .modal-close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  /* Add swipe indicator */
+  .blog-post-modal .modal-content::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+
+  body.dark .blog-post-modal .modal-content::before {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Footer adjustments */
+  .footer-menu-list {
+    gap: 12px;
+    flex-direction: column;
+  }
+
+  .top-footer p {
+    font-size: 1.5rem;
+  }
+
+  .top-footer::after {
+    width: 100px;
+  }
+
+  .no-posts-message i {
+    font-size: 3rem;
+  }
+
+  .no-posts-message p {
+    font-size: 1rem;
+  }
+
+  .no-posts-message .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Navigation adjustments */
+  .nav-name {
+    font-size: 1.5rem;
+  }
+
+  .nav-logo span {
+    font-size: 2rem;
+  }
+}
