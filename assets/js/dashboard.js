@@ -184,30 +184,38 @@ async function loadPostForEditing(postId) {
     }
 }
 
-function initializeDashboard() {
-    const posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
-    const postCount = posts.length;
+async function initializeDashboard() {
+    try {
+        // Get post count from Firebase
+        const snapshot = await postsCollection.get();
+        const postCount = snapshot.size;
 
-    const postCountElement = document.querySelector('.post-count');
-    if (postCountElement) {
-        postCountElement.textContent = postCount;
-    }
-
-    const contentField = document.getElementById('postContent');
-    if (contentField) {
-        const formGroup = contentField.closest('.form-group');
-        const excerptField = document.getElementById('postExcerpt');
-
-        if (!excerptField) {
-            const excerptGroup = document.createElement('div');
-            excerptGroup.className = 'form-group';
-            excerptGroup.innerHTML = `
-                <label for="postExcerpt">Excerpt (optional)</label>
-                <textarea id="postExcerpt" rows="3" placeholder="Brief summary of your post..."></textarea>
-                <small>If left empty, an excerpt will be generated from the content.</small>
-            `;
-
-            formGroup.parentNode.insertBefore(excerptGroup, formGroup.nextSibling);
+        // Update post count in the dashboard
+        const postCountElement = document.querySelector('.post-count');
+        if (postCountElement) {
+            postCountElement.textContent = postCount;
         }
+
+        // Set up excerpt field if needed
+        const contentField = document.getElementById('postContent');
+        if (contentField) {
+            const formGroup = contentField.closest('.form-group');
+            const excerptField = document.getElementById('postExcerpt');
+
+            if (!excerptField) {
+                const excerptGroup = document.createElement('div');
+                excerptGroup.className = 'form-group';
+                excerptGroup.innerHTML = `
+                    <label for="postExcerpt">Excerpt (optional)</label>
+                    <textarea id="postExcerpt" rows="3" placeholder="Brief summary of your post..."></textarea>
+                    <small>If left empty, an excerpt will be generated from the content.</small>
+                `;
+
+                formGroup.parentNode.insertBefore(excerptGroup, formGroup.nextSibling);
+            }
+        }
+    } catch (error) {
+        console.error('Error initializing dashboard:', error);
+        // Show error message if needed
     }
 }

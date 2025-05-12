@@ -1,78 +1,27 @@
+// Array to store blog posts from Firebase
 let blogPosts = [];
-
-const samplePosts = [
-    {
-        title: "Getting Started with React Hooks",
-        date: "2023-01-15T12:00:00",
-        category: "React",
-        excerpt: "React Hooks have revolutionized how we write React components. Learn how to use useState, useEffect, and more in this comprehensive guide.",
-        content: "React Hooks were introduced in React 16.8 as a way to use state and other React features without writing a class component. They allow you to 'hook into' React state and lifecycle features from function components.\n\nThe most commonly used hooks are:\n\n- useState: For managing state in functional components\n- useEffect: For handling side effects like data fetching\n- useContext: For consuming context in a more elegant way\n- useReducer: For managing more complex state logic\n- useRef: For persisting values across renders without causing re-renders\n\nHooks make your code more reusable and easier to test. They also help in organizing your logic better than the lifecycle methods in class components.",
-        image: null,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    },
-    {
-        title: "Building RESTful APIs with Node.js and Express",
-        date: "2023-02-03T14:30:00",
-        category: "Node.js",
-        excerpt: "Learn how to create robust and scalable RESTful APIs using Node.js and Express framework with best practices for authentication and error handling.",
-        content: "Express.js is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications. It's the most popular framework for building APIs with Node.js.\n\nHere's a basic structure for creating a RESTful API with Express:\n\n```javascript\nconst express = require('express');\nconst app = express();\n\napp.use(express.json());\n\napp.get('/api/items', (req, res) => {\n  // Get all items\n});\n\napp.get('/api/items/:id', (req, res) => {\n  // Get item by ID\n});\n\napp.post('/api/items', (req, res) => {\n  // Create new item\n});\n\napp.put('/api/items/:id', (req, res) => {\n  // Update item\n});\n\napp.delete('/api/items/:id', (req, res) => {\n  // Delete item\n});\n\napp.listen(3000, () => console.log('Server running on port 3000'));\n```\n\nFor authentication, you can use packages like Passport.js or JWT (JSON Web Tokens). For error handling, middleware functions are your best friend in Express.",
-        image: null,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    },
-    {
-        title: "CSS Grid vs Flexbox: When to Use Each",
-        date: "2023-03-20T09:15:00",
-        category: "CSS",
-        excerpt: "Understand the key differences between CSS Grid and Flexbox, and learn when to use each layout system for optimal web design.",
-        content: "CSS Grid and Flexbox are two powerful layout systems in CSS, each with their own strengths and ideal use cases.\n\n**Flexbox** is designed for one-dimensional layouts - either a row or a column. It's perfect for:\n- Navigation menus\n- Card layouts with equal height but different content\n- Centering elements vertically and horizontally\n- Distributing space between items in a container\n\n**CSS Grid** is designed for two-dimensional layouts - rows and columns together. It's ideal for:\n- Overall page layouts\n- Complex grid-based designs\n- Placing elements in exact positions\n- Creating layouts where items span multiple rows and columns\n\nIn practice, you'll often use both: Grid for the overall layout, and Flexbox for the components within that layout. They work beautifully together!",
-        image: null,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    }
-];
 
 async function initializeBlogPosts() {
     try {
+        // If we already have posts in memory, return them
         if (blogPosts.length > 0) {
             return blogPosts;
         }
 
+        // Get posts from Firebase, ordered by creation date
         const snapshot = await postsCollection.orderBy('createdAt', 'desc').get();
 
-        if (snapshot.empty) {
-            console.log('No posts found, adding sample posts...');
-
-            const currentUser = firebase.auth().currentUser;
-            if (currentUser) {
-                const addPromises = samplePosts.map(post => postsCollection.add(post));
-                await Promise.all(addPromises);
-
-                const newSnapshot = await postsCollection.orderBy('createdAt', 'desc').get();
-                blogPosts = newSnapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                }));
-            } else {
-                blogPosts = samplePosts.map((post, index) => ({
-                    id: `sample-${index + 1}`,
-                    ...post
-                }));
-            }
-        } else {
-            blogPosts = snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-        }
+        // Map the Firestore documents to our posts array
+        blogPosts = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
 
         return blogPosts;
     } catch (error) {
         console.error('Error initializing blog posts:', error);
-
-        blogPosts = samplePosts.map((post, index) => ({
-            id: `sample-${index + 1}`,
-            ...post
-        }));
-
+        // Return empty array on error
+        blogPosts = [];
         return blogPosts;
     }
 }

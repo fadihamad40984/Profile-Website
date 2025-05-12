@@ -237,3 +237,70 @@ body.dark .post-card-image.placeholder::before {
     gap: 15px;
   }
 }
+
+/* Loading state */
+.loading-posts {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--light-text-color);
+  grid-column: 1 / -1;
+}
+
+.loading-posts i {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+/* Error message */
+.error-message {
+  text-align: center;
+  padding: 50px 20px;
+  color: #e74c3c;
+  background-color: rgba(231, 76, 60, 0.1);
+  border-radius: 10px;
+  margin: 20px 0;
+  grid-column: 1 / -1;
+}
+
+.error-message i {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+/* Animation for spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Loading overlay for delete/edit operations */
+body.loading::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.loading::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 10000;
+}
