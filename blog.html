@@ -158,6 +158,45 @@
    <script src="./assets/js/firebase-config.js"></script>
    <script src="./assets/js/blog.js"></script>
    <script src="./assets/js/blog-enhanced.js"></script>
+   <script>
+   // Debug script to help identify issues
+   document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM fully loaded');
+
+      // Check if Firebase is initialized
+      if (typeof firebase !== 'undefined') {
+         console.log('Firebase is initialized');
+         console.log('Auth state:', firebase.auth().currentUser);
+
+         // Check if postsCollection is defined
+         if (typeof postsCollection !== 'undefined') {
+            console.log('postsCollection is defined');
+         } else {
+            console.error('postsCollection is not defined');
+         }
+
+         // Check if blogPosts array is defined
+         if (typeof blogPosts !== 'undefined') {
+            console.log('blogPosts array is defined, length:', blogPosts.length);
+         } else {
+            console.error('blogPosts array is not defined');
+         }
+      } else {
+         console.error('Firebase is not initialized');
+      }
+
+      // Check if the Read More buttons are properly set up
+      setTimeout(() => {
+         const readMoreLinks = document.querySelectorAll('.read-more');
+         console.log('Read More links found:', readMoreLinks.length);
+
+         readMoreLinks.forEach(link => {
+            const postId = link.getAttribute('data-id');
+            console.log('Read More link with post ID:', postId);
+         });
+      }, 2000); // Wait for posts to load
+   });
+   </script>
    <script src="./assets/js/mainpages.js"></script>
 </body>
 </html>

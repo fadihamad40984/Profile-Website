@@ -1,9 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    initializeBlogPosts();
+    console.log('blog-enhanced.js loaded');
 
-    setupSearchAndFilter();
-
-    setupLoadMoreButton();
+    // Wait for Firebase to initialize
+    setTimeout(() => {
+        initializeBlogPosts();
+        setupSearchAndFilter();
+        setupLoadMoreButton();
+        console.log('Blog enhanced features initialized');
+    }, 500);
 });
 
 function setupSearchAndFilter() {
@@ -118,8 +122,16 @@ function renderBlogPosts(reset = true, limit = 6) {
     document.querySelectorAll('.read-more').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            const postId = parseInt(this.getAttribute('data-id'));
-            openBlogPost(postId);
+            const postId = this.getAttribute('data-id');
+            console.log('Enhanced blog - Read More clicked with ID:', postId);
+
+            if (postId) {
+                // Make sure postId is a string
+                openBlogPost(String(postId));
+            } else {
+                console.error('No post ID found');
+                alert('Error: Could not find post ID');
+            }
         });
     });
 }

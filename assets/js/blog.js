@@ -103,27 +103,51 @@ async function openBlogPost(postId) {
     try {
         console.log('Opening post with ID:', postId);
 
+        // Validate postId
+        if (!postId || postId === 'undefined' || postId === 'null' || postId === 'NaN') {
+            console.error('Invalid post ID:', postId);
+            alert('Error: Invalid post ID');
+            return;
+        }
+
         // Try to find post in memory first
         let post = blogPosts.find(p => p.id === postId);
 
         // If not found in memory, try to fetch from Firebase
         if (!post) {
             console.log('Post not found in memory, fetching from Firebase...');
-            const doc = await postsCollection.doc(postId).get();
 
-            if (!doc.exists) {
-                console.error('Post not found in Firebase');
-                alert('Sorry, this post could not be found.');
-                return;
+            // Ensure postId is a valid string for Firebase
+            if (typeof postId !== 'string') {
+                postId = String(postId);
             }
 
-            post = {
-                id: doc.id,
-                ...doc.data()
-            };
+            // Check if postId is empty after conversion
+            if (!postId || postId.trim() === '') {
+                throw new Error('Empty post ID');
+            }
 
-            // Add to local cache
-            blogPosts.push(post);
+            try {
+                const doc = await postsCollection.doc(postId).get();
+
+                if (!doc.exists) {
+                    console.error('Post not found in Firebase');
+                    alert('Sorry, this post could not be found.');
+                    return;
+                }
+
+                post = {
+                    id: doc.id,
+                    ...doc.data()
+                };
+
+                // Add to local cache
+                blogPosts.push(post);
+            } catch (fetchError) {
+                console.error('Error fetching post from Firebase:', fetchError);
+                alert('Error fetching post. Please try again later.');
+                return;
+            }
         }
 
         console.log('Post found:', post);
