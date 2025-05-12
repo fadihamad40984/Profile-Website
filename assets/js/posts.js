@@ -44,6 +44,9 @@ function setupEventListeners() {
     }
 }
 
+// Global variable to store posts
+let blogPosts = [];
+
 async function displayPosts() {
     const postsList = document.getElementById('postsList');
     const noPostsMessage = document.getElementById('noPostsMessage');
@@ -62,10 +65,13 @@ async function displayPosts() {
     try {
         // Get posts from Firebase
         let snapshot = await postsCollection.orderBy('createdAt', 'desc').get();
-        let posts = snapshot.docs.map(doc => ({
+        blogPosts = snapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data()
         }));
+
+        // Create a working copy for filtering
+        let posts = [...blogPosts];
 
         // Apply search filter
         if (searchInput && searchInput.value.trim() !== '') {
@@ -192,6 +198,9 @@ async function deletePost(postId) {
 
             // Delete from Firebase
             await postsCollection.doc(postId).delete();
+
+            // Update local cache
+            blogPosts = blogPosts.filter(post => post.id !== postId);
 
             // Refresh the display
             displayPosts();
